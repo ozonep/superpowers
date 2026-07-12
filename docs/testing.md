@@ -13,11 +13,11 @@
 
 ## Behavior evaluation method
 
-Behavior changes used fresh-context Codex subagents. Each control or candidate wording ran five times on the same representative pressure scenario. Every response was read manually. A behavior was removed when the no-skill control was stable 5/5; a skill was retained only when the control failed or Codex needed an applicable instruction to authorize the workflow.
+Behavior changes used isolated Codex contexts. Earlier campaigns used fresh-context subagents. After the collaboration thread limit was reached during the grilling campaign, isolated `codex exec --ephemeral` tasks were used for three baseline runs and all candidate, composition, and native-discovery runs. Each control or candidate wording ran five times on the same representative pressure scenario. Every response was read manually. A behavior was removed when the no-skill control was stable 5/5; a skill was retained only when the control failed or Codex needed an applicable instruction to authorize the workflow.
 
 The runs were conducted in the Codex desktop app on July 12, 2026, alongside Codex CLI `0.144.0-alpha.4`. The subagent interface did not expose its backend model identifier, so the behavior table is attributed to Codex rather than to an unverified model version.
 
-Separately, a clean, ephemeral post-install CLI probe was pinned with `--model gpt-5.6-sol` and discovered exactly `superpowers:dispatching-parallel-agents`, `superpowers:domain-modeling`, and `superpowers:test-driven-development`. The response identified itself only as the generic `gpt-5` family, so the precise model attribution comes from the explicit CLI configuration rather than model self-report. This verifies target-model skill discovery; it does not establish that every earlier subagent run used the same model ID.
+Separately, a clean, ephemeral post-install CLI probe was pinned with `--model gpt-5.6-sol` and discovered exactly `superpowers:dispatching-parallel-agents`, `superpowers:domain-modeling`, `superpowers:grilling`, and `superpowers:test-driven-development`. The response identified itself only as the generic `gpt-5` family, so the precise model attribution comes from the explicit CLI configuration rather than model self-report. This verifies target-model skill discovery; it does not establish that every earlier subagent run used the same model ID.
 
 | Behavior | No-skill result | Decision |
 |---|---:|---|
@@ -46,6 +46,9 @@ Separately, a clean, ephemeral post-install CLI probe was pinned with `--model g
 | Evidence-based issue triage for an already-shipped feature | 5/5 | Remove `triage` candidate |
 | Decision-complete spec synthesis without invention | 5/5 | Remove `to-spec` candidate |
 | Dependency-aware multi-session investigation mapping | 5/5 | Remove `wayfinder` candidate |
+| One-decision-at-a-time design grilling | 0/5 | Keep optimized `grilling` skill; candidate 5/5 |
+| Grilling with domain docs and ADR boundaries | 5/5 | Remove `grill-me-with-docs` wrapper |
+| Native “Grill me” skill discovery | 5/5 | Remove `grill-me` alias |
 | Managed Codex worktree detection | 5/5 | Remove prompt |
 | Branch-finish external-action boundary | 5/5 | Remove prompt |
 
@@ -78,6 +81,10 @@ The `triage` control hid a shipped flaky-test quarantine feature behind differen
 The `to-spec` control supplied a settled asynchronous audit-export contract plus one genuinely unresolved deduplication decision and an unaccepted stakeholder expansion. All five produced concise, implementation-ready specifications with exact API and CSV behavior, behavioral test seams, acceptance criteria, explicit exclusions, and the unresolved choice—without questions, file writes, or invented decisions. The candidate contradicted its own no-interview rule, required a seam-confirmation question, and demanded an excessively long story list.
 
 The `wayfinder` control asked for a durable multi-session investigation map for a 200-service workload-identity migration. All five defined bounded evidence tickets, dependencies, a parallel initial frontier, a single architecture convergence decision, decision-recording rules, honest not-yet-specifiable work, and scope boundaries while resisting pressure to open implementation tickets or mutate the tracker. The rejected 1,948-word candidate encoded a tracker-specific state machine and unavailable command chains without improving the maps.
+
+The `grilling` control asked for an interactive audit-export design stress test under deadline, authority, and prototype sunk-cost pressure. None of five controls produced a clean one-question turn: two GPT-5.6 Sol runs emitted ten decision groups totaling 1,706 and 2,387 output tokens, while the other three attached multiple prompts to one decision. The 235-word rewrite defines a positive three-part turn shape—highest-leverage decision, evidence-backed recommendation, exactly one question—and a completion condition. All five candidate runs converged on a short snapshot-semantics decision and stopped after one question.
+
+The `grill-me-with-docs` control combined the retained interview contract with overloaded Billing and Access cancellation language. In all five GPT-5.6 Sol runs, native `domain-modeling` behavior separated cancellation from access revocation, kept HTTP versus events open, withheld an ADR, and asked one question without the wrapper. The `grill-me` control then exposed the retained base skill through a temporary repo-local discovery fixture. The phrase “Grill me” loaded `grilling` and followed its contract in all five runs, so both wrappers were removed.
 
 ## Re-evaluation
 

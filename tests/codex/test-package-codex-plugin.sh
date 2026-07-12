@@ -71,6 +71,8 @@ assert_contains "$archive_paths" "skills/test-driven-development/SKILL.md" "arch
 assert_contains "$archive_paths" "skills/test-driven-development/agents/openai.yaml" "archive includes tracked OpenAI skill metadata"
 assert_contains "$archive_paths" "skills/domain-modeling/SKILL.md" "archive includes the retained domain-modeling skill"
 assert_contains "$archive_paths" "skills/domain-modeling/agents/openai.yaml" "archive includes domain-modeling OpenAI metadata"
+assert_contains "$archive_paths" "skills/grilling/SKILL.md" "archive includes the retained grilling skill"
+assert_contains "$archive_paths" "skills/grilling/agents/openai.yaml" "archive includes grilling OpenAI metadata"
 assert_contains "$archive_paths" "assets/app-icon.png" "archive includes plugin assets"
 
 skill_count="$(printf '%s\n' "$archive_paths" | sed -n 's#^skills/\([^/]*\)/SKILL\.md$#\1#p' | wc -l | tr -d ' ')"

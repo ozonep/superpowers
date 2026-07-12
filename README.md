@@ -9,10 +9,11 @@ The fork keeps only behavior-shaping instructions that changed representative GP
 - **test-driven-development** — preserves strict test-first behavior under deadline, authority, and sunk-cost pressure.
 - **dispatching-parallel-agents** — explicitly authorizes bounded parallel delegation for independent work and protects Codex's shared workspace from overlapping writes.
 - **domain-modeling** — clarifies overloaded language, invariants, and ownership while keeping unresolved architecture choices open.
+- **grilling** — stress-tests a plan interactively with one evidence-backed decision question per turn.
 
-All three skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
+All four skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
 
-A clean, ephemeral Codex CLI `0.144.0-alpha.4` task pinned with `--model gpt-5.6-sol` discovered exactly these three installed skills. The model's response exposed only the generic `gpt-5` family label, so model identity is attributed to the explicit CLI configuration rather than self-report.
+A clean, ephemeral Codex CLI `0.144.0-alpha.4` task pinned with `--model gpt-5.6-sol` discovered exactly these four installed skills. The model's response exposed only the generic `gpt-5` family label, so model identity is attributed to the explicit CLI configuration rather than self-report.
 
 ## Why the plugin is small
 
@@ -24,7 +25,9 @@ Implicit delegation also needed a skill: 5/5 controls correctly refused to spawn
 
 Domain modeling exposed a narrower gap: only 3/5 controls kept an unresolved integration mechanism neutral; 2/5 prematurely recommended domain events. The optimized skill passed 5/5 by separating canonical language, ownership, and invariants from architecture decisions and ADRs.
 
-Ten other new candidates were rejected after their controls passed 5/5 with no candidate instructions. They duplicated Codex behavior or imposed tracker-specific, artifact-heavy, or internally conflicting workflows.
+Interactive grilling exposed a response-shape gap: 0/5 controls asked one clean decision question, and two produced ten-question interrogations. The optimized turn contract passed 5/5 and also triggered natively from “Grill me” in 5/5 discovery runs.
+
+The twelve rejected candidates from the two latest evaluation rounds duplicated Codex behavior or imposed tracker-specific, artifact-heavy, internally conflicting, or redundant wrapper workflows.
 
 See [the evaluation notes](docs/testing.md) for the tested contracts and model-attribution limits.
 
