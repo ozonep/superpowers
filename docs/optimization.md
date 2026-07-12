@@ -20,7 +20,7 @@ The v7 fork treats prompt text as a measured runtime dependency.
 - Checked `agents/openai.yaml` into each skill instead of copying metadata from an older package.
 - Made dirty development packaging consume the current working tree.
 - Reduced the runtime from fourteen skills to two measured skills.
-- Rejected the later `lean-code` and `reviewing-plans` candidates after both no-skill controls passed 5/5.
+- Rejected the later `lean-code`, `reviewing-plans`, `ponytail`, and `caveman` candidates after every no-skill control passed 5/5.
 
 ## Sources
 

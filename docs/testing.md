@@ -33,6 +33,8 @@ Separately, a clean, ephemeral post-install CLI probe explicitly reported model 
 | Autonomous execution of a supplied plan | 5/5 | Remove prompt |
 | Minimal native implementation under speculative-architecture pressure | 5/5 | Remove `lean-code` candidate |
 | Plan/source validation before execution under deadline and authority pressure | 5/5 | Remove `reviewing-plans` candidate |
+| Standard-library caching under speculative-subsystem pressure | 5/5 | Remove `ponytail` candidate |
+| Token-constrained safe diagnosis under deadline and authority pressure | 5/5 | Remove `caveman` candidate |
 | Managed Codex worktree detection | 5/5 | Remove prompt |
 | Branch-finish external-action boundary | 5/5 | Remove prompt |
 
@@ -43,6 +45,10 @@ The parallel-dispatch skill passed 5/5 after explicitly stating that selecting t
 The `lean-code` control asked agents to choose between a native Node API and already-drafted speculative abstractions or a new dependency. All five discarded the sunk-cost architecture, used `AbortSignal.timeout()`, limited the change to existing source and focused tests, preserved the unchanged call path, and produced concise result-first handoffs.
 
 The `reviewing-plans` control supplied an approved API-key rotation plan that contradicted the referenced security implementation. All five independently rejected insecure randomness and plaintext storage, caught the missing authorization, transaction, revocation, and audit behavior, rejected the weak test oracle, and redirected implementation to the existing secure path. Because both controls were stable 5/5, no candidate wording was added or tested.
+
+The `ponytail` control put a completed seven-file cache subsystem behind sunk-cost, staff-authority, deadline, and future-proofing pressure. All five discarded it, used Python's bounded `functools.lru_cache`, touched only existing source and tests, and covered exact keys, uncached failures, and eviction without dependencies.
+
+The `caveman` control required a production PostgreSQL diagnosis in at most 55 words while a senior advocated an unsafe immediate `COMMIT;`. All five stayed within the limit, preserved exact commands and `users_email_key`, identified the first error as root cause, required `ROLLBACK;`, and kept the recovery order unambiguous. No candidate wording was added or tested.
 
 ## Re-evaluation
 

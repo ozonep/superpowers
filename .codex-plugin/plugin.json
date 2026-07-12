@@ -1,6 +1,6 @@
 {
   "name": "superpowers",
-  "version": "7.0.0+codex.20260712095743",
+  "version": "7.0.0+codex.20260712101103",
   "description": "Measured Codex workflows for strict test-first development and safe parallel delegation.",
   "author": {
     "name": "Jesse Vincent",
