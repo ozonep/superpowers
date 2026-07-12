@@ -8,10 +8,11 @@ The fork keeps only behavior-shaping instructions that changed representative GP
 
 - **test-driven-development** — preserves strict test-first behavior under deadline, authority, and sunk-cost pressure.
 - **dispatching-parallel-agents** — explicitly authorizes bounded parallel delegation for independent work and protects Codex's shared workspace from overlapping writes.
+- **domain-modeling** — clarifies overloaded language, invariants, and ownership while keeping unresolved architecture choices open.
 
-Both skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
+All three skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
 
-A clean, ephemeral Codex CLI `0.144.0-alpha.4` session reported model `gpt-5.6-sol` and discovered exactly these two installed skills.
+A clean, ephemeral Codex CLI `0.144.0-alpha.4` task pinned with `--model gpt-5.6-sol` discovered exactly these three installed skills. The model's response exposed only the generic `gpt-5` family label, so model identity is attributed to the explicit CLI configuration rather than self-report.
 
 ## Why the plugin is small
 
@@ -20,6 +21,10 @@ Five fresh-context control runs were used for each behavior. Codex succeeded 5/5
 Strict TDD did not hold without guidance: only 2/5 controls restarted from a failing test; 3/5 kept code written first and added tests afterward. The final skill passed 5/5 after one eval-discovered waiver loophole was closed.
 
 Implicit delegation also needed a skill: 5/5 controls correctly refused to spawn subagents when neither the user nor an applicable skill requested delegation. The final parallel-dispatch skill passed 5/5 and supplies that narrow authorization.
+
+Domain modeling exposed a narrower gap: only 3/5 controls kept an unresolved integration mechanism neutral; 2/5 prematurely recommended domain events. The optimized skill passed 5/5 by separating canonical language, ownership, and invariants from architecture decisions and ADRs.
+
+Ten other new candidates were rejected after their controls passed 5/5 with no candidate instructions. They duplicated Codex behavior or imposed tracker-specific, artifact-heavy, or internally conflicting workflows.
 
 See [the evaluation notes](docs/testing.md) for the tested contracts and model-attribution limits.
 

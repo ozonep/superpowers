@@ -4,7 +4,11 @@ import re
 
 root = Path(__file__).resolve().parents[2]
 skills_root = root / "skills"
-expected = {"dispatching-parallel-agents", "test-driven-development"}
+expected = {
+    "dispatching-parallel-agents",
+    "domain-modeling",
+    "test-driven-development",
+}
 
 skill_files = sorted(skills_root.glob("*/SKILL.md"))
 actual = {path.parent.name for path in skill_files}

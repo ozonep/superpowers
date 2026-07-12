@@ -1,7 +1,7 @@
 {
   "name": "superpowers",
-  "version": "7.0.0+codex.20260712101103",
-  "description": "Measured Codex workflows for strict test-first development and safe parallel delegation.",
+  "version": "7.0.0+codex.20260712120544",
+  "description": "Measured Codex workflows for strict test-first development, safe parallel delegation, and domain modeling.",
   "author": {
     "name": "Jesse Vincent",
     "email": "jesse@fsck.com",
@@ -17,13 +17,15 @@
     "skills",
     "tdd",
     "parallel-agents",
+    "domain-modeling",
+    "bounded-contexts",
     "workflow"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Superpowers for Codex",
-    "shortDescription": "Measured TDD and parallel-agent workflows for Codex",
-    "longDescription": "Two Codex-native workflows retained by fresh-context evaluations: strict test-first implementation and bounded parallel delegation for independent work.",
+    "shortDescription": "Measured TDD, delegation, and domain modeling",
+    "longDescription": "Three Codex-native workflows retained by fresh-context evaluations: strict test-first implementation, bounded parallel delegation, and architecture-neutral domain modeling.",
     "developerName": "Jesse Vincent",
     "category": "Developer Tools",
     "capabilities": [
@@ -33,7 +35,8 @@
     ],
     "defaultPrompt": [
       "Implement this behavior using strict test-first development.",
-      "Investigate these independent failures in parallel."
+      "Investigate these independent failures in parallel.",
+      "Clarify this domain's language, invariants, ownership boundaries, and open decisions."
     ],
     "websiteURL": "https://github.com/obra/superpowers",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
