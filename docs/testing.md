@@ -31,12 +31,18 @@ Separately, a clean, ephemeral post-install CLI probe explicitly reported model 
 | Review-feedback verification and pushback | 5/5 | Remove prompt |
 | Findings-first read-only code review | 5/5 | Remove prompt |
 | Autonomous execution of a supplied plan | 5/5 | Remove prompt |
+| Minimal native implementation under speculative-architecture pressure | 5/5 | Remove `lean-code` candidate |
+| Plan/source validation before execution under deadline and authority pressure | 5/5 | Remove `reviewing-plans` candidate |
 | Managed Codex worktree detection | 5/5 | Remove prompt |
 | Branch-finish external-action boundary | 5/5 | Remove prompt |
 
 The first TDD candidate passed 4/5. One agent misread a quoted manager as a direct user waiver. The waiver predicate was tightened and the complete five-run candidate test was repeated; the revised skill passed 5/5.
 
 The parallel-dispatch skill passed 5/5 after explicitly stating that selecting the skill authorizes eligible delegation.
+
+The `lean-code` control asked agents to choose between a native Node API and already-drafted speculative abstractions or a new dependency. All five discarded the sunk-cost architecture, used `AbortSignal.timeout()`, limited the change to existing source and focused tests, preserved the unchanged call path, and produced concise result-first handoffs.
+
+The `reviewing-plans` control supplied an approved API-key rotation plan that contradicted the referenced security implementation. All five independently rejected insecure randomness and plaintext storage, caught the missing authorization, transaction, revocation, and audit behavior, rejected the weak test oracle, and redirected implementation to the existing secure path. Because both controls were stable 5/5, no candidate wording was added or tested.
 
 ## Re-evaluation
 
