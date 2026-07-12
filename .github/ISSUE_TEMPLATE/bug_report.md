@@ -5,8 +5,7 @@ labels: bug
 ---
 
 <!--
-BEFORE FILING: Search open AND closed issues. The Windows SessionStart
-hook alone has been reported 29 times. If your issue already exists,
+BEFORE FILING: Search open AND closed issues. If your issue already exists,
 add a comment or reaction to the existing one instead.
 -->
 
@@ -19,19 +18,19 @@ add a comment or reaction to the existing one instead.
 | Field | Value |
 |-------|-------|
 | Superpowers version | |
-| Harness (Claude Code, Cursor, etc.) | |
-| Harness version | |
+| Codex surface (app, CLI, IDE) | |
+| Codex version | |
 | Your model + version | |
 | All plugins installed | |
 | OS + shell | |
 
-## Is this a Superpowers issue or a platform issue?
-<!-- Superpowers is a plugin. Some reported "bugs" are actually issues
-     in the underlying platform or model. If you're not sure, try
+## Is this a Superpowers issue or a Codex issue?
+<!-- Superpowers is a Codex plugin. Some reported "bugs" are actually issues
+     in Codex or the model. If you're not sure, try
      reproducing without Superpowers installed.
 
      If the problem persists without Superpowers, file the issue with
-     your platform instead. -->
+     OpenAI instead. -->
 
 - [ ] I confirmed this issue does not occur without Superpowers installed
 

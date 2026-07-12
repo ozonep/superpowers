@@ -1,35 +1,52 @@
-# Testing Superpowers
+# Testing the Codex plugin
 
-Superpowers has two distinct kinds of tests, each in its own directory:
+## Local checks
 
-- **`tests/`** — does the plugin's non-LLM code work? Bash + node + python integration tests for brainstorm-server JS, OpenCode plugin loading, codex-plugin sync, and analysis utilities.
-- **`evals/`** — do agents behave correctly on real LLM sessions? Python harness driving real tmux sessions of Claude Code / Codex / Gemini CLI, with an LLM actor and verifier judging skill compliance.
+`tests/codex/run-tests.sh` verifies:
 
-## Plugin tests
+- no foreign runtime entry points remain;
+- exactly the measured skills are packaged;
+- skill names, trigger descriptions, word budgets, and OpenAI metadata are valid;
+- marketplace and manifest metadata agree;
+- dirty builds package the current working tree rather than stale `HEAD`;
+- zip and tar archives are deterministic and contain the same Codex runtime files.
 
-Live in `tests/`. Currently:
+## Behavior evaluation method
 
-- `tests/brainstorm-server/` — node test suite for the brainstorm server JS code.
-- `tests/opencode/` — bash tests for OpenCode plugin loading, bootstrap caching, and tool registration.
-- `tests/codex-plugin-sync/` — bash sync verification.
-- `tests/kimi/` — bash/Python checks for Kimi plugin manifest wiring.
-- `tests/claude-code/test-helpers.sh`, `analyze-token-usage.py` — utilities used by remaining bash tests.
-- `tests/claude-code/test-subagent-driven-development.sh` — agent-can-describe-SDD test (no drill counterpart; tests description-recall, not behavior).
-- `tests/claude-code/test-subagent-driven-development-integration.sh` — extended SDD integration with token analysis (drill covers the YAGNI subset; bash adds commit-count, Claude Code task-tracking, and token telemetry assertions).
-- `tests/claude-code/test-worktree-native-preference.sh` — RED-GREEN-REFACTOR validation for worktree skill (drill covers the PRESSURE phase; bash also covers RED/GREEN baselines).
-- `tests/explicit-skill-requests/` — Haiku-specific, multi-turn, and skill-name-prompted tests not covered by drill.
+Behavior changes used fresh-context Codex subagents. Each control or candidate wording ran five times on the same representative pressure scenario. Every response was read manually. A behavior was removed when the no-skill control was stable 5/5; a skill was retained only when the control failed or Codex needed an applicable instruction to authorize the workflow.
 
-Run plugin tests via the relevant directory's `run-*.sh` or `npm test`.
+The runs were conducted in the Codex desktop app on July 12, 2026, alongside Codex CLI `0.144.0-alpha.4`. The subagent interface did not expose its backend model identifier, so the behavior table is attributed to Codex rather than to an unverified model version.
 
-## Skill behavior evals
+Separately, a clean, ephemeral post-install CLI probe explicitly reported model `gpt-5.6-sol` and discovered exactly `superpowers:dispatching-parallel-agents` and `superpowers:test-driven-development`. This verifies that the target model loads the final plugin surface; it does not establish that every earlier subagent run used the same model ID.
 
-Live in `evals/`. Drill is the harness; scenarios live at `evals/scenarios/*.yaml`. See `evals/README.md` for setup. Quick start:
+| Behavior | No-skill result | Decision |
+|---|---:|---|
+| Concise design triage before code | 5/5 | Remove prompt |
+| Strict test-first restart after code was written | 2/5 | Keep skill |
+| Fresh final-state verification | 5/5 | Remove prompt |
+| Root-cause debugging under timeout pressure | 5/5 | Remove prompt |
+| Outcome-first implementation planning | 5/5 | Remove prompt |
+| Sequential, verified write delegation | 5/5 | Remove workflow |
+| Implicit parallel delegation without authorization | 0/5 | Keep authorization skill |
+| Review-feedback verification and pushback | 5/5 | Remove prompt |
+| Findings-first read-only code review | 5/5 | Remove prompt |
+| Autonomous execution of a supplied plan | 5/5 | Remove prompt |
+| Managed Codex worktree detection | 5/5 | Remove prompt |
+| Branch-finish external-action boundary | 5/5 | Remove prompt |
 
-```bash
-cd evals
-uv sync --extra dev
-export ANTHROPIC_API_KEY=sk-...
-uv run drill run triggering-test-driven-development -b claude
-```
+The first TDD candidate passed 4/5. One agent misread a quoted manager as a direct user waiver. The waiver predicate was tightened and the complete five-run candidate test was repeated; the revised skill passed 5/5.
 
-Drill scenarios are slow (3-30+ minutes each) and run real LLM sessions. They are not part of CI today; the natural follow-up is a tiered model (fast subset on PR, full sweep nightly + on-demand).
+The parallel-dispatch skill passed 5/5 after explicitly stating that selecting the skill authorizes eligible delegation.
+
+## Re-evaluation
+
+When changing a skill:
+
+1. Keep a no-skill control on the same task.
+2. Change one instruction group at a time.
+3. Use at least five fresh contexts for stochastic behavior.
+4. Read every output; do not score only keywords.
+5. If any candidate run exposes a loophole, make the smallest targeted edit and rerun the complete candidate set.
+6. Compare correctness first, then tokens, latency, calls, and variance.
+
+This follows OpenAI's [GPT-5.6 Sol prompting guidance](https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6).

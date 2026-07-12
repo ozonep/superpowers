@@ -38,8 +38,8 @@ progress, and some were intentionally declined.
 | Field | Value |
 |-------|-------|
 | Superpowers version | |
-| Harness (Claude Code, Cursor, etc.) | |
-| Harness version | |
+| Codex surface (app, CLI, IDE) | |
+| Codex version | |
 | Your model + version | |
 | All plugins installed | |
 
