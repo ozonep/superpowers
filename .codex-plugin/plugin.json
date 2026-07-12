@@ -1,6 +1,6 @@
 {
   "name": "superpowers",
-  "version": "7.0.0+codex.20260712125103",
+  "version": "7.0.0+codex.20260712180431",
   "description": "Measured Codex workflows for strict test-first development, safe parallel delegation, domain modeling, and design interviews.",
   "author": {
     "name": "Jesse Vincent",
@@ -38,8 +38,7 @@
     "defaultPrompt": [
       "Implement this behavior using strict test-first development.",
       "Investigate these independent failures in parallel.",
-      "Clarify this domain's language, invariants, ownership boundaries, and open decisions.",
-      "Grill me on this design one decision at a time before implementation."
+      "Clarify this domain's language, invariants, ownership, and open decisions; grill me one decision at a time where choices remain."
     ],
     "websiteURL": "https://github.com/obra/superpowers",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",

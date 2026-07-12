@@ -27,7 +27,7 @@ Domain modeling exposed a narrower gap: only 3/5 controls kept an unresolved int
 
 Interactive grilling exposed a response-shape gap: 0/5 controls asked one clean decision question, and two produced ten-question interrogations. The optimized turn contract passed 5/5 and also triggered natively from “Grill me” in 5/5 discovery runs.
 
-The twelve rejected candidates from the two latest evaluation rounds duplicated Codex behavior or imposed tracker-specific, artifact-heavy, internally conflicting, or redundant wrapper workflows.
+The fourteen rejected candidates from the three latest evaluation rounds duplicated Codex behavior or imposed tracker-specific, artifact-heavy, internally conflicting, redundant wrapper, or oversized reference workflows.
 
 See [the evaluation notes](docs/testing.md) for the tested contracts and model-attribution limits.
 

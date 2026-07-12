@@ -7,7 +7,7 @@
 - no foreign runtime entry points remain;
 - exactly the measured skills are packaged;
 - skill names, trigger descriptions, word budgets, and OpenAI metadata are valid;
-- marketplace and manifest metadata agree;
+- marketplace and manifest metadata agree, including the three-prompt runtime limit;
 - dirty builds package the current working tree rather than stale `HEAD`;
 - zip and tar archives are deterministic and contain the same Codex runtime files.
 
@@ -49,6 +49,8 @@ Separately, a clean, ephemeral post-install CLI probe was pinned with `--model g
 | One-decision-at-a-time design grilling | 0/5 | Keep optimized `grilling` skill; candidate 5/5 |
 | Grilling with domain docs and ADR boundaries | 5/5 | Remove `grill-me-with-docs` wrapper |
 | Native “Grill me” skill discovery | 5/5 | Remove `grill-me` alias |
+| Diátaxis documentation restructuring and operator how-to | 5/5 | Remove `documentation` candidate |
+| Strict TypeScript correlated-union diagnosis | 5/5 | Remove `typescript-magician` candidate |
 | Managed Codex worktree detection | 5/5 | Remove prompt |
 | Branch-finish external-action boundary | 5/5 | Remove prompt |
 
@@ -85,6 +87,10 @@ The `wayfinder` control asked for a durable multi-session investigation map for 
 The `grilling` control asked for an interactive audit-export design stress test under deadline, authority, and prototype sunk-cost pressure. None of five controls produced a clean one-question turn: two GPT-5.6 Sol runs emitted ten decision groups totaling 1,706 and 2,387 output tokens, while the other three attached multiple prompts to one decision. The 235-word rewrite defines a positive three-part turn shape—highest-leverage decision, evidence-backed recommendation, exactly one question—and a completion condition. All five candidate runs converged on a short snapshot-semantics decision and stopped after one question.
 
 The `grill-me-with-docs` control combined the retained interview contract with overloaded Billing and Access cancellation language. In all five GPT-5.6 Sol runs, native `domain-modeling` behavior separated cancellation from access revocation, kept HTTP versus events open, withheld an ADR, and asked one question without the wrapper. The `grill-me` control then exposed the retained base skill through a temporary repo-local discovery fixture. The phrase “Grill me” loaded `grilling` and followed its contract in all five runs, so both wrappers were removed.
+
+The `documentation` control supplied a mixed tutorial, recovery procedure, CLI reference, and checkpointing explanation under pressure to preserve the old page. All five GPT-5.6 Sol runs separated the four Diátaxis purposes, produced a task-focused operator recovery guide, preserved exact same-run versus new-run semantics and exit codes, cross-linked related pages, and asked no unnecessary questions. The 823-word candidate exceeded the runtime budget and its unconditional clarification rule would regress complete-context requests.
+
+The `typescript-magician` control used a strict correlated discriminated-union error under deadline and authority pressure to accept `event.payload as never`. Five counted GPT-5.6 Sol runs explained the lost indexed-access correlation, rejected the cast, preserved `dispatch(event: DomainEvent)`, supplied negative correlation tests, and proposed sound exhaustive or distributive mapped-union fixes. The advanced mapped-union variant was additionally compiled with the available TypeScript 5.9.3 toolchain. One overlong research run was interrupted, excluded, and replaced. The rejected candidate contained 14,613 words across 15 files, recommended `ts-toolbelt`, and imposed universal theory, multi-solution, and `any`-elimination rules that would add cost or conflict with legitimate type-level constraints.
 
 ## Re-evaluation
 

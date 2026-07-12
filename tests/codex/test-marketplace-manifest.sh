@@ -25,6 +25,7 @@ assert plugin["category"] == "Developer Tools"
 
 assert manifest["name"] == plugin["name"]
 assert manifest["skills"] == "./skills/"
+assert len(manifest["interface"]["defaultPrompt"]) <= 3, "Codex supports at most three starter prompts"
 assert "hooks" not in manifest
 assert not any((root / "hooks").glob("*")), "Codex-only plugin must not ship foreign harness hooks"
 
