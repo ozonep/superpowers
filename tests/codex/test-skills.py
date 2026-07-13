@@ -7,6 +7,7 @@ skills_root = root / "skills"
 expected = {
     "dispatching-parallel-agents",
     "domain-modeling",
+    "full-code-review",
     "grilling",
     "test-driven-development",
 }

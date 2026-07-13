@@ -1,7 +1,7 @@
 {
   "name": "superpowers",
-  "version": "7.0.0+codex.20260712180431",
-  "description": "Measured Codex workflows for strict test-first development, safe parallel delegation, domain modeling, and design interviews.",
+  "version": "7.0.0+codex.20260713100816",
+  "description": "Measured Codex workflows for strict test-first development, comprehensive code review, safe parallel delegation, domain modeling, and design interviews.",
   "author": {
     "name": "Jesse Vincent",
     "email": "jesse@fsck.com",
@@ -13,6 +13,7 @@
   "keywords": [
     "codex",
     "gpt-5.6",
+    "code-review",
     "subagents",
     "skills",
     "tdd",
@@ -26,8 +27,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Superpowers for Codex",
-    "shortDescription": "Measured TDD, delegation, modeling, and interviews",
-    "longDescription": "Four Codex-native workflows retained by fresh-context evaluations: strict test-first implementation, bounded parallel delegation, architecture-neutral domain modeling, and one-decision-at-a-time design interviews.",
+    "shortDescription": "Measured TDD, review, delegation, modeling, and interviews",
+    "longDescription": "Five Codex-native workflows for strict test-first implementation, evidence-backed full code review, bounded parallel delegation, architecture-neutral domain modeling, and one-decision-at-a-time design interviews.",
     "developerName": "Jesse Vincent",
     "category": "Developer Tools",
     "capabilities": [
@@ -37,7 +38,7 @@
     ],
     "defaultPrompt": [
       "Implement this behavior using strict test-first development.",
-      "Investigate these independent failures in parallel.",
+      "Review these changes thoroughly; investigate independent risks in parallel when useful.",
       "Clarify this domain's language, invariants, ownership, and open decisions; grill me one decision at a time where choices remain."
     ],
     "websiteURL": "https://github.com/obra/superpowers",

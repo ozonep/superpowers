@@ -19,13 +19,14 @@ The v7 fork treats prompt text as a measured runtime dependency.
 - Removed the custom visual-companion server in favor of native Codex visual capabilities.
 - Checked `agents/openai.yaml` into each skill instead of copying metadata from an older package.
 - Made dirty development packaging consume the current working tree.
-- Reduced the runtime from fourteen skills to four measured skills.
+- Reduced the original runtime to five focused Codex skills.
 - Rejected the later `lean-code`, `reviewing-plans`, `ponytail`, and `caveman` candidates after every no-skill control passed 5/5.
 - Rejected `code-review`, `diagnosing-bugs`, `grill-with-docs`, `implement`, `improve-codebase-architecture`, `research`, `tdd`, `triage`, `to-spec`, and `wayfinder` after independent 5/5 controls showed no behavior gap.
 - Retained and rewrote `domain-modeling`: the no-skill control stayed architecture-neutral only 3/5, while the compact Codex-native candidate passed 5/5.
 - Retained and rewrote `grilling`: no control produced a clean one-question turn, while the 235-word Codex-native candidate passed 5/5.
 - Rejected `grill-me-with-docs` and `grill-me` after the retained skills composed and triggered natively in 5/5 controls without either wrapper.
 - Rejected `documentation` and `typescript-magician` after GPT-5.6 Sol controls passed 5/5 without either candidate.
+- Retained and rewrote the explicitly required `full-code-review` candidate: the compact workflow infers safe review scope, continues without a formal spec, uses parallel read-only lenses only when worthwhile, verifies candidate findings, and emits one prioritized report.
 - Capped starter prompts at Codex's three-entry runtime limit and added a regression assertion after live discovery runs exposed the ignored fourth prompt.
 
 ## Sources

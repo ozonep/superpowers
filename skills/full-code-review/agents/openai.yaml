@@ -1,0 +1,3 @@
+interface:
+  display_name: "Full Code Review"
+  short_description: "Review changes across correctness, standards, and simplicity"

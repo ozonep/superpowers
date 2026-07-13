@@ -2,18 +2,19 @@
 
 This is a Codex-only, zero-dependency fork of Superpowers tuned for GPT-5.6, especially GPT-5.6 Sol.
 
-The fork keeps only behavior-shaping instructions that changed representative GPT-5.6 outcomes. Codex already provides planning, debugging, review, validation, Git safety, and skill discovery; repeating those contracts made the prompt stack longer without improving the tested behavior.
+The fork keeps behavior-shaping instructions that changed representative GPT-5.6 outcomes, plus the explicitly retained comprehensive-review workflow. Codex already provides planning, debugging, ordinary review, validation, Git safety, and skill discovery; the retained skills add narrow contracts instead of repeating those defaults.
 
 ## Included skills
 
 - **test-driven-development** — preserves strict test-first behavior under deadline, authority, and sunk-cost pressure.
+- **full-code-review** — coordinates an evidence-backed, read-only review across correctness, repository standards, and unnecessary complexity.
 - **dispatching-parallel-agents** — explicitly authorizes bounded parallel delegation for independent work and protects Codex's shared workspace from overlapping writes.
 - **domain-modeling** — clarifies overloaded language, invariants, and ownership while keeping unresolved architecture choices open.
 - **grilling** — stress-tests a plan interactively with one evidence-backed decision question per turn.
 
-All four skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
+All five skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
 
-A clean, ephemeral Codex CLI `0.144.0-alpha.4` task pinned with `--model gpt-5.6-sol` discovered exactly these four installed skills. The model's response exposed only the generic `gpt-5` family label, so model identity is attributed to the explicit CLI configuration rather than self-report.
+A clean, ephemeral Codex CLI `0.144.0-alpha.4` task pinned with `--model gpt-5.6-sol` verified discovery of the earlier four-skill build. The comprehensive-review addition passed five separate GPT-5.6 Sol behavior runs against its current source.
 
 ## Why the plugin is small
 
@@ -26,6 +27,8 @@ Implicit delegation also needed a skill: 5/5 controls correctly refused to spawn
 Domain modeling exposed a narrower gap: only 3/5 controls kept an unresolved integration mechanism neutral; 2/5 prematurely recommended domain events. The optimized skill passed 5/5 by separating canonical language, ownership, and invariants from architecture decisions and ADRs.
 
 Interactive grilling exposed a response-shape gap: 0/5 controls asked one clean decision question, and two produced ten-question interrogations. The optimized turn contract passed 5/5 and also triggered natively from “Grill me” in 5/5 discovery runs.
+
+Ordinary findings-first review already worked without extra prompting, but `full-code-review` is intentionally retained for a broader product requirement: independently cover correctness, repository standards, and simplification, then verify and prioritize the combined findings. Its original fixed-point, mandatory-spec, and raw-report workflow was replaced with a compact Codex-native contract.
 
 The fourteen rejected candidates from the three latest evaluation rounds duplicated Codex behavior or imposed tracker-specific, artifact-heavy, internally conflicting, redundant wrapper, or oversized reference workflows.
 

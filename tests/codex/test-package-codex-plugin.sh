@@ -73,11 +73,14 @@ assert_contains "$archive_paths" "skills/domain-modeling/SKILL.md" "archive incl
 assert_contains "$archive_paths" "skills/domain-modeling/agents/openai.yaml" "archive includes domain-modeling OpenAI metadata"
 assert_contains "$archive_paths" "skills/grilling/SKILL.md" "archive includes the retained grilling skill"
 assert_contains "$archive_paths" "skills/grilling/agents/openai.yaml" "archive includes grilling OpenAI metadata"
+assert_contains "$archive_paths" "skills/full-code-review/SKILL.md" "archive includes the retained full-code-review skill"
+assert_contains "$archive_paths" "skills/full-code-review/agents/openai.yaml" "archive includes full-code-review OpenAI metadata"
 assert_contains "$archive_paths" "assets/app-icon.png" "archive includes plugin assets"
 
 skill_count="$(printf '%s\n' "$archive_paths" | sed -n 's#^skills/\([^/]*\)/SKILL\.md$#\1#p' | wc -l | tr -d ' ')"
 metadata_count="$(printf '%s\n' "$archive_paths" | sed -n 's#^skills/\([^/]*\)/agents/openai\.yaml$#\1#p' | wc -l | tr -d ' ')"
 assert_equals "$metadata_count" "$skill_count" "every packaged skill has OpenAI metadata"
+assert_equals "$skill_count" "5" "archive contains exactly the five retained skills"
 
 zip_times="$(python3 - "$archive" <<'PY'
 import sys

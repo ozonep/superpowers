@@ -5,7 +5,7 @@
 `tests/codex/run-tests.sh` verifies:
 
 - no foreign runtime entry points remain;
-- exactly the measured skills are packaged;
+- exactly the five retained skills are packaged;
 - skill names, trigger descriptions, word budgets, and OpenAI metadata are valid;
 - marketplace and manifest metadata agree, including the three-prompt runtime limit;
 - dirty builds package the current working tree rather than stale `HEAD`;
@@ -15,11 +15,11 @@
 
 Behavior changes used isolated Codex contexts. Earlier campaigns used fresh-context subagents. After the collaboration thread limit was reached during the grilling campaign, isolated `codex exec --ephemeral` tasks were used for three baseline runs and all candidate, composition, and native-discovery runs. Each control or candidate wording ran five times on the same representative pressure scenario. Every response was read manually. A behavior was removed when the no-skill control was stable 5/5; a skill was retained only when the control failed or Codex needed an applicable instruction to authorize the workflow.
 
-The runs were conducted in the Codex desktop app on July 12, 2026, alongside Codex CLI `0.144.0-alpha.4`. The subagent interface did not expose its backend model identifier, so the behavior table is attributed to Codex rather than to an unverified model version.
+The earlier campaigns were conducted in the Codex desktop app on July 12, 2026, alongside Codex CLI `0.144.0-alpha.4`. The subagent interface did not expose its backend model identifier, so those behavior-table entries are attributed to Codex rather than to an unverified model version. The five `full-code-review` candidate runs were conducted on July 13, 2026, as isolated CLI tasks explicitly pinned to `gpt-5.6-sol`.
 
 Separately, a clean, ephemeral post-install CLI probe was pinned with `--model gpt-5.6-sol` and discovered exactly `superpowers:dispatching-parallel-agents`, `superpowers:domain-modeling`, `superpowers:grilling`, and `superpowers:test-driven-development`. The response identified itself only as the generic `gpt-5` family, so the precise model attribution comes from the explicit CLI configuration rather than model self-report. This verifies target-model skill discovery; it does not establish that every earlier subagent run used the same model ID.
 
-| Behavior | No-skill result | Decision |
+| Behavior | Baseline or candidate result | Decision |
 |---|---:|---|
 | Concise design triage before code | 5/5 | Remove prompt |
 | Strict test-first restart after code was written | 2/5 | Keep skill |
@@ -51,6 +51,7 @@ Separately, a clean, ephemeral post-install CLI probe was pinned with `--model g
 | Native “Grill me” skill discovery | 5/5 | Remove `grill-me` alias |
 | Diátaxis documentation restructuring and operator how-to | 5/5 | Remove `documentation` candidate |
 | Strict TypeScript correlated-union diagnosis | 5/5 | Remove `typescript-magician` candidate |
+| Comprehensive three-lens working-tree review without a formal spec | Optimized candidate 5/5 | Keep rewritten `full-code-review` by explicit requirement |
 | Managed Codex worktree detection | 5/5 | Remove prompt |
 | Branch-finish external-action boundary | 5/5 | Remove prompt |
 
@@ -91,6 +92,8 @@ The `grill-me-with-docs` control combined the retained interview contract with o
 The `documentation` control supplied a mixed tutorial, recovery procedure, CLI reference, and checkpointing explanation under pressure to preserve the old page. All five GPT-5.6 Sol runs separated the four Diátaxis purposes, produced a task-focused operator recovery guide, preserved exact same-run versus new-run semantics and exit codes, cross-linked related pages, and asked no unnecessary questions. The 823-word candidate exceeded the runtime budget and its unconditional clarification rule would regress complete-context requests.
 
 The `typescript-magician` control used a strict correlated discriminated-union error under deadline and authority pressure to accept `event.payload as never`. Five counted GPT-5.6 Sol runs explained the lost indexed-access correlation, rejected the cast, preserved `dispatch(event: DomainEvent)`, supplied negative correlation tests, and proposed sound exhaustive or distributive mapped-union fixes. The advanced mapped-union variant was additionally compiled with the available TypeScript 5.9.3 toolchain. One overlong research run was interrupted, excluded, and replaced. The rejected candidate contained 14,613 words across 15 files, recommended `ts-toolbelt`, and imposed universal theory, multi-solution, and `any`-elimination rules that would add cost or conflict with legitimate type-level constraints.
+
+The `full-code-review` candidate was retained by explicit product requirement, not because ordinary findings-first review had failed. Its 1,256-word original required a user-supplied fixed point and spec, forced three agents for every review, skipped correctness when no spec existed, and emitted separate raw reports without deduplication or global prioritization. The 446-word rewrite infers the narrowest safe scope, treats a formal spec as optional evidence, scales parallel read-only lenses to the change, verifies candidate findings, and returns one prioritized report. Five GPT-5.6 Sol runs reviewed the same synthetic uncommitted TypeScript patch with no formal spec. Every run asked no question, stayed read-only, found all four contract failures plus the weak truthiness test and unnecessary single-implementation interface, supplied concrete triggers and locations, and stated scope and validation. The focused packaging check was also observed red with the rewritten skill absent and green after restoring only the skill and its OpenAI metadata.
 
 ## Re-evaluation
 
