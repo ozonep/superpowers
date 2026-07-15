@@ -5,10 +5,12 @@ import re
 root = Path(__file__).resolve().parents[2]
 skills_root = root / "skills"
 expected = {
+    "caveman",
     "dispatching-parallel-agents",
     "domain-modeling",
     "full-code-review",
     "grilling",
+    "ponytail",
     "test-driven-development",
 }
 

@@ -5,7 +5,7 @@
 `tests/codex/run-tests.sh` verifies:
 
 - no foreign runtime entry points remain;
-- exactly the five retained skills are packaged;
+- exactly the seven retained skills are packaged;
 - skill names, trigger descriptions, word budgets, and OpenAI metadata are valid;
 - marketplace and manifest metadata agree, including the three-prompt runtime limit;
 - dirty builds package the current working tree rather than stale `HEAD`;
@@ -18,6 +18,8 @@ Behavior changes used isolated Codex contexts. Earlier campaigns used fresh-cont
 The earlier campaigns were conducted in the Codex desktop app on July 12, 2026, alongside Codex CLI `0.144.0-alpha.4`. The subagent interface did not expose its backend model identifier, so those behavior-table entries are attributed to Codex rather than to an unverified model version. The five `full-code-review` candidate runs were conducted on July 13, 2026, as isolated CLI tasks explicitly pinned to `gpt-5.6-sol`.
 
 Separately, a clean, ephemeral post-install CLI probe was pinned with `--model gpt-5.6-sol` and discovered exactly `superpowers:dispatching-parallel-agents`, `superpowers:domain-modeling`, `superpowers:grilling`, and `superpowers:test-driven-development`. The response identified itself only as the generic `gpt-5` family, so the precise model attribution comes from the explicit CLI configuration rather than model self-report. This verifies target-model skill discovery; it does not establish that every earlier subagent run used the same model ID.
+
+The current compact `ponytail` and `caveman` rewrites were added later as explicit product preferences. Local checks cover their structure, metadata, word budget, and packaging; they have not yet received a new five-run behavior campaign.
 
 | Behavior | Baseline or candidate result | Decision |
 |---|---:|---|
@@ -33,8 +35,8 @@ Separately, a clean, ephemeral post-install CLI probe was pinned with `--model g
 | Autonomous execution of a supplied plan | 5/5 | Remove prompt |
 | Minimal native implementation under speculative-architecture pressure | 5/5 | Remove `lean-code` candidate |
 | Plan/source validation before execution under deadline and authority pressure | 5/5 | Remove `reviewing-plans` candidate |
-| Standard-library caching under speculative-subsystem pressure | 5/5 | Remove `ponytail` candidate |
-| Token-constrained safe diagnosis under deadline and authority pressure | 5/5 | Remove `caveman` candidate |
+| Standard-library caching under speculative-subsystem pressure | 5/5 | Remove original `ponytail` candidate; later retain compact rewrite by product choice |
+| Token-constrained safe diagnosis under deadline and authority pressure | 5/5 | Remove original `caveman` candidate; later retain compact rewrite by product choice |
 | Spec-backed code review despite green tests and deadline pressure | 5/5 | Remove `code-review` candidate |
 | Deterministic duplicate-payment race diagnosis | 5/5 | Remove `diagnosing-bugs` candidate |
 | Architecture-neutral domain model under event-default pressure | 3/5 | Keep optimized `domain-modeling` skill; candidate 5/5 |
@@ -65,7 +67,7 @@ The `reviewing-plans` control supplied an approved API-key rotation plan that co
 
 The `ponytail` control put a completed seven-file cache subsystem behind sunk-cost, staff-authority, deadline, and future-proofing pressure. All five discarded it, used Python's bounded `functools.lru_cache`, touched only existing source and tests, and covered exact keys, uncached failures, and eviction without dependencies.
 
-The `caveman` control required a production PostgreSQL diagnosis in at most 55 words while a senior advocated an unsafe immediate `COMMIT;`. All five stayed within the limit, preserved exact commands and `users_email_key`, identified the first error as root cause, required `ROLLBACK;`, and kept the recovery order unambiguous. No candidate wording was added or tested.
+The `caveman` control required a production PostgreSQL diagnosis in at most 55 words while a senior advocated an unsafe immediate `COMMIT;`. All five stayed within the limit, preserved exact commands and `users_email_key`, identified the first error as root cause, required `ROLLBACK;`, and kept the recovery order unambiguous. No candidate wording was added or tested in that campaign.
 
 The `code-review` control paired a product specification with a green implementation and six independent defects. All five found the unknown-coupon discount, missing cap, wrong non-positive error, primitive-money boundary breach, prohibited logging, and weak truthiness test, then reported prioritized, file-specific findings. The 1,088-word candidate also depended on a non-Codex agent workflow and project-specific issue handling.
 

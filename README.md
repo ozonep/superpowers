@@ -2,7 +2,7 @@
 
 This is a Codex-only, zero-dependency fork of Superpowers tuned for GPT-5.6, especially GPT-5.6 Sol.
 
-The fork keeps behavior-shaping instructions that changed representative GPT-5.6 outcomes, plus the explicitly retained comprehensive-review workflow. Codex already provides planning, debugging, ordinary review, validation, Git safety, and skill discovery; the retained skills add narrow contracts instead of repeating those defaults.
+The fork keeps behavior-shaping instructions that changed representative GPT-5.6 outcomes, plus a few deliberately retained product preferences. Codex already provides planning, debugging, ordinary review, validation, Git safety, and skill discovery; the retained skills add narrow contracts instead of repeating those defaults.
 
 ## Included skills
 
@@ -11,8 +11,10 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 - **dispatching-parallel-agents** — explicitly authorizes bounded parallel delegation for independent work and protects Codex's shared workspace from overlapping writes.
 - **domain-modeling** — clarifies overloaded language, invariants, and ownership while keeping unresolved architecture choices open.
 - **grilling** — stress-tests a plan interactively with one evidence-backed decision question per turn.
+- **ponytail** — applies a simplicity-first decision ladder to coding work without trading away correctness or explicit requirements.
+- **caveman** — produces token-minimal answers while preserving required facts, exact technical content, and safety clarity.
 
-All five skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
+All seven skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
 
 A clean, ephemeral Codex CLI `0.144.0-alpha.4` task pinned with `--model gpt-5.6-sol` verified discovery of the earlier four-skill build. The comprehensive-review addition passed five separate GPT-5.6 Sol behavior runs against its current source.
 
@@ -30,7 +32,9 @@ Interactive grilling exposed a response-shape gap: 0/5 controls asked one clean 
 
 Ordinary findings-first review already worked without extra prompting, but `full-code-review` is intentionally retained for a broader product requirement: independently cover correctness, repository standards, and simplification, then verify and prioritize the combined findings. Its original fixed-point, mandatory-spec, and raw-report workflow was replaced with a compact Codex-native contract.
 
-The fourteen rejected candidates from the three latest evaluation rounds duplicated Codex behavior or imposed tracker-specific, artifact-heavy, internally conflicting, redundant wrapper, or oversized reference workflows.
+`ponytail` and `caveman` are also explicit product choices rather than fixes for measured capability gaps: earlier no-skill controls already passed their representative tasks 5/5. Their compact rewrites make the preferences discoverable and consistent, but have not yet received the same five-run behavior campaign.
+
+The other rejected candidates duplicated Codex behavior or imposed tracker-specific, artifact-heavy, internally conflicting, redundant wrapper, or oversized reference workflows.
 
 See [the evaluation notes](docs/testing.md) for the tested contracts and model-attribution limits.
 
