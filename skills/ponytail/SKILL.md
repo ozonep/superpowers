@@ -1,7 +1,6 @@
 ---
 name: ponytail
 description: Use when working on coding tasks to choose the smallest correct solution by reusing existing code, preferring standard-library or native features, avoiding speculative abstractions and dependencies, and minimizing the diff. Also use when the user invokes `$ponytail`, requests lazy, YAGNI, or minimal implementation, or complains about overengineering. Do not use for non-coding work.
-license: MIT
 ---
 
 # Ponytail
