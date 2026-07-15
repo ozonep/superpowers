@@ -5,7 +5,7 @@
 `tests/codex/run-tests.sh` verifies:
 
 - no foreign runtime entry points remain;
-- exactly the seven retained skills are packaged;
+- exactly the eight retained skills are packaged;
 - skill names, trigger descriptions, word budgets, and OpenAI metadata are valid;
 - marketplace and manifest metadata agree, including the three-prompt runtime limit;
 - dirty builds package the current working tree rather than stale `HEAD`;
@@ -21,6 +21,8 @@ Separately, a clean, ephemeral post-install CLI probe was pinned with `--model g
 
 The current compact `ponytail` and `caveman` rewrites were added later as explicit product preferences. Local checks cover their structure, metadata, word budget, and packaging; they have not yet received a new five-run behavior campaign.
 
+The compact `receiving-code-review` rewrite was also added later by explicit product choice. Local checks cover the same structural properties, but its current evidence, disposition, and action-authority contract has not yet received a five-run behavior campaign.
+
 | Behavior | Baseline or candidate result | Decision |
 |---|---:|---|
 | Concise design triage before code | 5/5 | Remove prompt |
@@ -30,7 +32,7 @@ The current compact `ponytail` and `caveman` rewrites were added later as explic
 | Outcome-first implementation planning | 5/5 | Remove prompt |
 | Sequential, verified write delegation | 5/5 | Remove workflow |
 | Implicit parallel delegation without authorization | 0/5 | Keep authorization skill |
-| Review-feedback verification and pushback | 5/5 | Remove prompt |
+| Review-feedback verification and pushback | 5/5 | Remove original prompt; later retain compact rewrite by product choice |
 | Findings-first read-only code review | 5/5 | Remove prompt |
 | Autonomous execution of a supplied plan | 5/5 | Remove prompt |
 | Minimal native implementation under speculative-architecture pressure | 5/5 | Remove `lean-code` candidate |
@@ -60,6 +62,8 @@ The current compact `ponytail` and `caveman` rewrites were added later as explic
 The first TDD candidate passed 4/5. One agent misread a quoted manager as a direct user waiver. The waiver predicate was tightened and the complete five-run candidate test was repeated; the revised skill passed 5/5.
 
 The parallel-dispatch skill passed 5/5 after explicitly stating that selecting the skill authorizes eligible delegation.
+
+The original review-feedback control passed 5/5 without extra instructions, so no skill was retained in that campaign. `receiving-code-review` was added later as an explicit product preference; its current rewrite should not be treated as behavior-evaluated evidence.
 
 The `lean-code` control asked agents to choose between a native Node API and already-drafted speculative abstractions or a new dependency. All five discarded the sunk-cost architecture, used `AbortSignal.timeout()`, limited the change to existing source and focused tests, preserved the unchanged call path, and produced concise result-first handoffs.
 
