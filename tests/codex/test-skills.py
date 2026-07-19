@@ -11,6 +11,7 @@ expected = {
     "full-code-review",
     "grilling",
     "ponytail",
+    "ponytail-review",
     "receiving-code-review",
     "test-driven-development",
 }

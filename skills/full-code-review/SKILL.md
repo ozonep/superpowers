@@ -1,6 +1,6 @@
 ---
 name: full-code-review
-description: Use when the user requests a comprehensive, read-only review of a PR, branch, commit, diff, or working tree across correctness, repository standards, and unnecessary complexity.
+description: Use when the user requests a comprehensive, read-only review of a PR, branch, commit, diff, or working tree across correctness, repository standards, and unnecessary complexity. Do not use when the user explicitly limits the review to simplification or overengineering.
 ---
 
 # Full Code Review

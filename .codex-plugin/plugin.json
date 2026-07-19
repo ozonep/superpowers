@@ -1,7 +1,7 @@
 {
   "name": "superpowers",
-  "version": "7.0.0+codex.20260713100816",
-  "description": "Measured Codex workflows for strict test-first development, comprehensive code review, safe parallel delegation, domain modeling, and design interviews.",
+  "version": "7.0.0+codex.20260719164821",
+  "description": "Measured Codex workflows for strict TDD, full and focused code review, safe parallel delegation, domain modeling, design interviews, and simplicity.",
   "author": {
     "name": "Jesse Vincent",
     "email": "jesse@fsck.com",
@@ -14,6 +14,8 @@
     "codex",
     "gpt-5.6",
     "code-review",
+    "simplification",
+    "overengineering",
     "subagents",
     "skills",
     "tdd",
@@ -27,8 +29,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Superpowers for Codex",
-    "shortDescription": "Measured TDD, review, delegation, modeling, and interviews",
-    "longDescription": "Five Codex-native workflows for strict test-first implementation, evidence-backed full code review, bounded parallel delegation, architecture-neutral domain modeling, and one-decision-at-a-time design interviews.",
+    "shortDescription": "Measured TDD, reviews, delegation, modeling, and simplicity",
+    "longDescription": "Nine Codex-native skills for strict test-first implementation, comprehensive and simplification-only code review, review-feedback handling, bounded parallel delegation, domain modeling, design interviews, minimal implementation, and concise technical communication.",
     "developerName": "Jesse Vincent",
     "category": "Developer Tools",
     "capabilities": [
