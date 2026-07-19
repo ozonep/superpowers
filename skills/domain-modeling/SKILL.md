@@ -7,15 +7,15 @@ description: Use when domain terms are overloaded, business rules conflict, owne
 
 ## Outcome
 
-A precise model names each concept once and separates business facts from unresolved architecture choices.
+A precise model gives each concept an unambiguous meaning within its bounded context and separates business facts from unresolved architecture choices.
 
 ## Method
 
 1. Extract actors, entities, value objects, relationships, lifecycle facts, cardinalities, and invariants.
-2. Replace overloaded words with canonical terms. Define each in one or two sentences and name misleading synonyms to avoid.
+2. Define each term unambiguously within its bounded context. When the same word has different legitimate meanings across contexts, qualify it by context instead of forcing one global definition; name misleading synonyms to avoid.
 3. Stress-test the model with concrete scenarios, especially different timing, ownership, and many-to-many cases.
 4. Compare user statements, documentation, and source behavior. Report contradictions instead of silently choosing one truth.
-5. Assign one authoritative context to each fact. Describe cross-context relationships semantically: what fact moves, from which owner, with what invariant.
+5. Identify the authoritative owner for each independently governed fact. For federated or derived facts, make every contributing owner and the authority or reconciliation rule explicit. Describe cross-context relationships semantically: what fact moves, from which owner, with what invariant.
 
 Return the canonical language, ownership boundaries, invariants, contradictions, and open decisions. Keep glossary definitions free of implementation details.
 
@@ -29,4 +29,4 @@ An ADR records a selected, hard-to-reverse trade-off and its reasons. An unmade 
 
 ## Completion bar
 
-Every important term has one meaning, cardinalities and invariants are explicit, each fact has one owner, contradictions are visible, and unresolved design choices remain honestly unresolved.
+Every important term is unambiguous within its context, cross-context homonyms are qualified, cardinalities and invariants are explicit, fact authority is explicit, contradictions are visible, and unresolved design choices remain honestly unresolved.

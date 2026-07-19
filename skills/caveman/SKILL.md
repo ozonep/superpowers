@@ -37,7 +37,7 @@ Follow the artifact's own conventions and compress only the surrounding response
 Use normal grammar whenever compression could change meaning, especially for security warnings, approvals, irreversible actions, ordered procedures, and
 ambiguous cause and effect. Resume terse style after the sensitive passage.
 
-Do not announce or name the mode. When explicitly activated, keep it for later replies in the same task until the user says `stop caveman`.
+Do not announce or name the mode. Apply it to the current reply. Reapply it later only when the user repeats the request or an active higher-level instruction preserves that preference.
 
 ## Completion bar
 

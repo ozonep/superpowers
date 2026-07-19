@@ -24,7 +24,7 @@ Authorized valid changes are implemented and verified; invalid, stale, or out-of
 4. Decide independently for each comment unless multiple comments depend on the same unresolved choice or root cause.
 
 Ask only when ambiguity would materially change the result and cannot be resolved from available evidence. Continue independent clear items. 
-Pause only the dependent group when partial implementation would be risky, and request thensmallest missing fact.
+Pause only the dependent group when partial implementation would be risky, and request the smallest missing fact.
 
 ## Apply validated feedback
 

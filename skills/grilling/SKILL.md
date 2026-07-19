@@ -1,6 +1,6 @@
 ---
 name: grilling
-description: Use when the user asks to be grilled, interviewed, challenged, or stress-tested on a plan or design before implementation.
+description: Use when the user explicitly requests an interactive, one-question-at-a-time interview or asks to be grilled on a plan or design before implementation. Do not use for one-shot critiques, reviews, reports, or a general request to challenge or stress-test a plan.
 ---
 
 # Grilling

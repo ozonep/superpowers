@@ -37,7 +37,7 @@ Lead with findings ordered by confidence and expected maintenance value. Use:
 `path:line [tag] Remove or replace <thing> with <smallest alternative>. Evidence: <why behavior is preserved>.`
 
 Name the concrete cost, smallest replacement, and preservation evidence. Omit style preferences, formatting nits, and aggregate line-saving estimates. 
-If there are no findings, say `Lean already. Ship.`
+If there are no findings, say `No verified simplification findings.` Do not imply the change is otherwise correct or ready to ship.
 
 Then state the reviewed scope, validation performed, and residual uncertainty.
 Complete when every plausible material simplification in scope has been examined and no files or Git state were changed.
