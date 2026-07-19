@@ -1,0 +1,10 @@
+interface:
+  display_name: "jCodeMunch"
+  short_description: "Navigate code precisely with jCodeMunch MCP"
+  default_prompt: "Use $jcodemunch to explore this repository with precise, freshness-aware code retrieval."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "jcodemunch"
+      description: "jCodeMunch MCP server for symbol-level repository retrieval"

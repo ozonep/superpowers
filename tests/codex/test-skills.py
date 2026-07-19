@@ -10,6 +10,7 @@ expected = {
     "domain-modeling",
     "full-code-review",
     "grilling",
+    "jcodemunch",
     "ponytail",
     "ponytail-review",
     "receiving-code-review",
@@ -43,5 +44,17 @@ for skill_file in skill_files:
     allowed = {skill_file, metadata}
     extras = {path for path in skill_file.parent.rglob("*") if path.is_file()} - allowed
     assert not extras, f"unreferenced runtime files in {skill_file.parent}: {sorted(extras)}"
+
+jcodemunch_text = (skills_root / "jcodemunch/SKILL.md").read_text(encoding="utf-8")
+for required_term in (
+    "jcodemunch_guide",
+    "resolve_repo",
+    "menu",
+    "route",
+    "order",
+    "assemble_task_context",
+    "register_edit",
+):
+    assert required_term in jcodemunch_text, f"jcodemunch skill omits {required_term}"
 
 print("Codex skill structure looks good")

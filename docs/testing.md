@@ -5,7 +5,7 @@
 `tests/codex/run-tests.sh` verifies:
 
 - no foreign runtime entry points remain;
-- exactly the nine retained skills are packaged;
+- exactly the ten retained skills are packaged;
 - skill names, trigger descriptions, word budgets, and OpenAI metadata are valid;
 - marketplace and manifest metadata agree, including the three-prompt runtime limit;
 - dirty builds package the current working tree rather than stale `HEAD`;
@@ -22,6 +22,8 @@ Separately, a clean, ephemeral post-install CLI probe was pinned with `--model g
 The current compact `ponytail` and `caveman` rewrites were added later as explicit product preferences. Local checks cover their structure, metadata, word budget, and packaging; they have not yet received a new five-run behavior campaign.
 
 The compact `receiving-code-review` rewrite was also added later by explicit product choice. Local checks cover the same structural properties, but its current evidence, disposition, and action-authority contract has not yet received a five-run behavior campaign.
+
+The `jcodemunch` integration was derived from the upstream repository's current guide generator, counter front door, retrieval health signals, and edit-registration path. Local checks cover discovery, packaging, required routing concepts, metadata, and word budget; a fresh-context forward test covers realistic routing. It has not received a five-run behavior campaign.
 
 The focused `ponytail-review` entry point is also an explicit product choice. Five GPT-5.6 Sol controls using the existing prompt stack all recommended deleting the original staged draft as redundant with `ponytail` and `full-code-review`. In an isolated repo-local discovery fixture, the final compressed wording passed five matched `max`-effort candidate runs: all selected only `ponytail-review`, resolved “staged” to the index despite overlapping unstaged edits, stayed read-only, and returned evidence-backed findings without aggregate line estimates. An earlier, longer version of the same contract also passed five `none`-effort runs before the final compression.
 
