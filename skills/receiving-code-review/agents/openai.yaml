@@ -1,3 +1,4 @@
 interface:
   display_name: "Receiving Code Review"
   short_description: "Verify and address review feedback with evidence"
+  default_prompt: "Use $receiving-code-review to verify and address these review comments against the current repository evidence."

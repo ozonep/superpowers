@@ -1,3 +1,4 @@
 interface:
   display_name: "Caveman"
   short_description: "Keep answers terse without losing technical substance"
+  default_prompt: "Use $caveman to answer this request in token-minimal prose without losing required technical details or safety warnings."

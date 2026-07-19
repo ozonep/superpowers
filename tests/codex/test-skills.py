@@ -40,6 +40,14 @@ for skill_file in skill_files:
     assert metadata.is_file(), f"missing OpenAI metadata: {metadata}"
     metadata_text = metadata.read_text(encoding="utf-8")
     assert "display_name:" in metadata_text and "short_description:" in metadata_text
+    default_prompt_match = re.search(
+        r'^  default_prompt:\s*"([^"\n]+)"\s*$', metadata_text, re.MULTILINE
+    )
+    assert default_prompt_match, f"missing quoted default_prompt: {metadata}"
+    skill_reference = f"${skill_file.parent.name}"
+    assert skill_reference in default_prompt_match.group(1), (
+        f"default_prompt must reference {skill_reference}: {metadata}"
+    )
 
     allowed = {skill_file, metadata}
     extras = {path for path in skill_file.parent.rglob("*") if path.is_file()} - allowed
