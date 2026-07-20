@@ -14,7 +14,7 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 - **domain-modeling** — clarifies overloaded language, invariants, and ownership while keeping unresolved architecture choices open.
 - **grilling** — stress-tests a plan interactively with one evidence-backed decision question per turn.
 - **ponytail** — applies a simplicity-first decision ladder to coding work without trading away correctness or explicit requirements.
-- **caveman** — produces token-minimal answers while preserving required facts, exact technical content, and safety clarity.
+- **caveman** — defaults to the shortest complete answer and expands when the request, correctness, or safety requires it.
 - **receiving-code-review** — verifies review comments against repository evidence before applying, declining, or escalating them.
 
 All ten skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
@@ -35,11 +35,11 @@ Interactive grilling exposed a response-shape gap: 0/5 controls asked one clean 
 
 Ordinary findings-first review already worked without extra prompting, but `full-code-review` is intentionally retained for a broader product requirement: independently cover correctness, repository standards, and simplification, then verify and prioritize the combined findings. Its original fixed-point, mandatory-spec, and raw-report workflow was replaced with a compact Codex-native contract.
 
-`ponytail` and `caveman` are also explicit product choices rather than fixes for measured capability gaps: earlier no-skill controls already passed their representative tasks 5/5. Their compact rewrites make the preferences discoverable and consistent, but have not yet received the same five-run behavior campaign.
+`ponytail` and `caveman` are also explicit product choices rather than fixes for measured capability gaps: earlier no-skill controls already passed their representative tasks 5/5. Their compact rewrites make the preferences discoverable and consistent. The current 113-word `caveman` rewrite passed three fresh-context checks covering ordinary brevity, safety-critical brevity, and explicitly requested detail; both skills remain pending a complete five-run behavior campaign.
 
 `receiving-code-review` is retained on the same basis: native feedback handling passed its earlier control 5/5, while the compact skill adds an explicit evidence, disposition, and action-authority contract. Its current rewrite also remains pending a five-run behavior campaign.
 
-`jcodemunch` is an explicit tool-integration skill derived from the upstream server's current source and agent policy. It defers to `jcodemunch_guide` for version-matched instructions, supports both compact and full MCP tool surfaces, and falls back cleanly when the server is unavailable. Its initial release is structurally and forward tested but has not received a five-run behavior campaign.
+`jcodemunch` is an explicit tool-integration skill derived from the upstream server's current source and agent policy. It defers to `jcodemunch_guide` for version-matched instructions, supports both compact and full MCP tool surfaces, and reports a blocker rather than bypassing a required jCodeMunch navigation policy. The current root-policy-aligned rewrite passed a fresh-context unavailable-server blocker check and remains pending a five-run full-surface behavior campaign.
 
 Five GPT-5.6 Sol controls found the original `ponytail-review` draft redundant with `ponytail` and `full-code-review`. It is retained only as a deliberate focused entry point: the optimized contract is read-only and simplification-only, and removes unsafe examples, guessed line-saving scores, and unsupported persistent-mode behavior. The final compressed wording passed five matched `max`-effort runs: every run selected only the focused skill, preserved the staged scope and read-only boundary, and returned evidence-backed simplifications without aggregate estimates.
 
