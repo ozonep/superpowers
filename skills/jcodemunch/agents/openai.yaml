@@ -8,3 +8,6 @@ dependencies:
     - type: "mcp"
       value: "jcodemunch"
       description: "jCodeMunch MCP server for symbol-level repository retrieval"
+
+policy:
+  allow_implicit_invocation: false
