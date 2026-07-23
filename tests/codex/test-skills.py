@@ -12,6 +12,7 @@ expected = {
     "grilling",
     "jcodemunch",
     "ponytail",
+    "ponytail-audit",
     "ponytail-review",
     "receiving-code-review",
     "test-driven-development",

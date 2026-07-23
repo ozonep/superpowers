@@ -19,12 +19,13 @@ The v7 fork treats prompt text as a measured runtime dependency.
 - Removed the custom visual-companion server in favor of native Codex visual capabilities.
 - Checked `agents/openai.yaml` into each skill instead of copying metadata from an older package.
 - Made dirty development packaging consume the current working tree.
-- Reduced the original runtime to ten focused Codex skills.
+- Reduced the original runtime to eleven focused Codex skills.
 - Rejected the later `lean-code` and `reviewing-plans` candidates after every no-skill control passed 5/5.
 - Retained compact rewrites of `ponytail` and `caveman` as explicit product preferences despite their earlier no-skill controls passing 5/5; the current rewrites remain pending representative behavior evaluation.
 - Retained a compact rewrite of `receiving-code-review` as an explicit evidence and action-authority contract despite the earlier review-feedback control passing 5/5; the current rewrite remains pending representative behavior evaluation.
 - Added `jcodemunch` as an explicit Codex-native tool adapter; it delegates version-sensitive policy to the server's self-guide and keeps only compact routing, evidence, freshness, and reindexing invariants locally.
 - Retained `ponytail-review` as an explicit focused-review entry point despite five GPT-5.6 Sol controls finding the original draft redundant; the optimized contract separates read-only simplification review from `ponytail` implementation and `full-code-review` comprehensive review, and its final compressed wording passed five fresh-context `max`-effort candidate runs.
+- Added `ponytail-audit` as the repository-wide counterpart to `ponytail-review`; the optimized contract narrows implicit triggering to simplification-only audits, verifies use and replacement semantics, reports coverage gaps, and removes guessed aggregate savings and unsupported persistent-mode instructions. Five matched GPT-5.6 Sol implicit-discovery runs selected it 5/5 and preserved all planted findings while producing reports 23% shorter on average than five no-skill controls; skill runs used evidence tags and avoided aggregate savings claims consistently.
 - Rejected `code-review`, `diagnosing-bugs`, `grill-with-docs`, `implement`, `improve-codebase-architecture`, `research`, `tdd`, `triage`, `to-spec`, and `wayfinder` after independent 5/5 controls showed no behavior gap.
 - Retained and rewrote `domain-modeling`: the no-skill control stayed architecture-neutral only 3/5, while the compact Codex-native candidate passed 5/5.
 - Retained and rewrote `grilling`: no control produced a clean one-question turn, while the 235-word Codex-native candidate passed 5/5.

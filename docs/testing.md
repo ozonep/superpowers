@@ -5,7 +5,7 @@
 `tests/codex/run-tests.sh` verifies:
 
 - no foreign runtime entry points remain;
-- exactly the ten retained skills are packaged;
+- exactly the eleven retained skills are packaged;
 - skill names, trigger descriptions, word budgets, and OpenAI metadata are valid;
 - marketplace and manifest metadata agree, including the three-prompt runtime limit;
 - dirty builds package the current working tree rather than stale `HEAD`;
@@ -26,6 +26,8 @@ The compact `receiving-code-review` rewrite was also added later by explicit pro
 The `jcodemunch` integration was derived from the upstream repository's current guide generator, counter front door, retrieval health signals, and edit-registration path. Local checks cover discovery, packaging, required routing concepts, metadata, and word budget. In one fresh-context GPT-5.6 Sol check, the current root-policy-aligned rewrite detected that jCodeMunch was unavailable, did not explore repository source through shell or filesystem tools, and returned the required blocker. It remains pending a five-run full-surface behavior campaign with jCodeMunch available.
 
 The focused `ponytail-review` entry point is also an explicit product choice. Five GPT-5.6 Sol controls using the existing prompt stack all recommended deleting the original staged draft as redundant with `ponytail` and `full-code-review`. In an isolated repo-local discovery fixture, the final compressed wording passed five matched `max`-effort candidate runs: all selected only `ponytail-review`, resolved “staged” to the index despite overlapping unstaged edits, stayed read-only, and returned evidence-backed findings without aggregate line estimates. An earlier, longer version of the same contract also passed five `none`-effort runs before the final compression.
+
+The repository-wide `ponytail-audit` entry point is likewise an explicit product choice. Its local checks cover narrow trigger metadata, a self-contained read-only audit workflow, UI metadata, word budget, and packaging. Five matched implicit candidate and five no-skill control runs used GPT-5.6 Sol at `medium` effort against the same synthetic Python repository with removable batching, a single-format hierarchy, an unused dependency, dead internal code, a native deduplication replacement, and documented adapter and clock boundaries. Both groups found every planted high-confidence simplification and preserved the meaningful boundaries. Candidate runs selected `ponytail-audit` 5/5, used its evidence tags 5/5, made no aggregate savings estimates, and averaged 349 final-answer words. Controls used no tags, made aggregate line or surface claims in four runs, and averaged 453 words. A preliminary `max`-effort pilot exposed repeated equivalent scans on the 176-line fixture; it was excluded from scoring, and the final skill adds a measured stopping rule.
 
 | Behavior | Baseline or candidate result | Decision |
 |---|---:|---|
@@ -61,6 +63,7 @@ The focused `ponytail-review` entry point is also an explicit product choice. Fi
 | Strict TypeScript correlated-union diagnosis | 5/5 | Remove `typescript-magician` candidate |
 | Comprehensive three-lens working-tree review without a formal spec | Optimized candidate 5/5 | Keep rewritten `full-code-review` by explicit requirement |
 | Focused read-only simplification review | Existing-stack control 5/5 found the draft redundant; final candidate 5/5 at `max` | Keep the narrow entry point by explicit product choice |
+| Repository-wide simplification audit | Control and candidate both found all planted opportunities 5/5; implicit candidate selected the skill 5/5, standardized evidence, avoided aggregate estimates, and averaged 23% fewer final-answer words | Keep the whole-repository entry point by explicit product choice |
 | Managed Codex worktree detection | 5/5 | Remove prompt |
 | Branch-finish external-action boundary | 5/5 | Remove prompt |
 
