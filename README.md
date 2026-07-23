@@ -7,6 +7,7 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 ## Included skills
 
 - **test-driven-development** — preserves strict test-first behavior under deadline, authority, and sunk-cost pressure.
+- **codegraph-usage** — retrieves current indexed source and best-effort structural context through CodeGraph while preserving freshness, worktree, and validation boundaries.
 - **jcodemunch** — routes code exploration through version-current, symbol-level jCodeMunch retrieval while preserving freshness and edit lifecycle checks.
 - **full-code-review** — coordinates an evidence-backed, read-only review across correctness, repository standards, and unnecessary complexity.
 - **ponytail-review** — performs a read-only review limited to verified behavior-preserving simplifications.
@@ -18,11 +19,11 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 - **caveman** — defaults to the shortest complete answer and expands when the request, correctness, or safety requires it.
 - **receiving-code-review** — verifies review comments against repository evidence before applying, declining, or escalating them.
 
-All eleven skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
+All twelve skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
 
-Historical behavior campaigns informed which skills were retained, but they exercised earlier prompt revisions and are not current-source validation. Ten skill prompts were rewritten on July 23, 2026; all ten remain pending complete representative re-evaluation. `caveman` was unchanged, so its three source-matched fresh-context checks still apply.
+Historical behavior campaigns informed which skills were retained, but they exercised earlier prompt revisions and are not current-source validation. Ten skill prompts were rewritten on July 23, 2026; all ten remain pending complete representative re-evaluation. The new `codegraph-usage` prompt is likewise pending a complete representative campaign. `caveman` was unchanged, so its three source-matched fresh-context checks still apply.
 
-Exact-current-source spot checks now cover a standalone `grilling` turn, a combined `grilling` plus `domain-modeling` turn, and a design-only `ponytail` request on GPT-5.6 Sol at `xhigh`. The interview probes each asked exactly one question and stopped; the Ponytail probe returned a minimal API and trade-off without attempting edits. An earlier domain-modeling forward test and a read-only `full-code-review` self-review exercised their core workflows but preceded final wording fixes. See [the evaluation notes](docs/testing.md) for scope and historical model-attribution limits.
+Exact-current-source spot checks now cover a standalone `grilling` turn, a combined `grilling` plus `domain-modeling` turn, a design-only `ponytail` request, and three real-MCP `codegraph-usage` probes on GPT-5.6 Sol at `xhigh` or `max`. The CodeGraph probes selected the skill both explicitly and from “Using CodeGraph,” discovered the deferred MCP tool, and used native reads only after CodeGraph reported trimmed content or for unindexed files. They were single runs on a small fixture, not a complete campaign. An earlier domain-modeling forward test and a read-only `full-code-review` self-review exercised their core workflows but preceded final wording fixes. See [the evaluation notes](docs/testing.md) for scope and historical model-attribution limits.
 
 ## Model and reasoning configuration
 
@@ -58,6 +59,8 @@ Ordinary findings-first review already worked without extra prompting, but `full
 `receiving-code-review` is retained on the same basis: native feedback handling passed its earlier control 5/5, while the compact skill adds an explicit evidence, classification, and action-authority contract. Its current rewrite remains pending representative re-evaluation.
 
 `jcodemunch` is an explicit tool-integration skill derived from the upstream server's guide and agent policy. It defers to `jcodemunch_guide` for version-matched instructions, supports both compact and full MCP tool surfaces, and reports a blocker rather than bypassing a required jCodeMunch navigation policy. An earlier root-policy-aligned revision passed a fresh-context unavailable-server blocker check; the current rewrite remains pending representative re-evaluation with the full surface available.
+
+`codegraph-usage` is an explicit tool-integration skill derived from CodeGraph's current MCP instructions, tool definitions, CLI reference, and indexing guidance. It favors the single default `codegraph_explore` surface, supports the CLI equivalent for non-MCP harnesses, distinguishes current source from best-effort relationship evidence, and keeps index mutation under user authority. Its exact prompt remains pending a complete representative evaluation campaign.
 
 Five GPT-5.6 Sol controls found the original `ponytail-review` draft redundant with `ponytail` and `full-code-review`. It is retained only as a deliberate focused entry point: the optimized contract is read-only and simplification-only, and removes unsafe examples, guessed line-saving scores, and unsupported persistent-mode behavior. An earlier compressed revision passed five matched `max`-effort runs: every run selected only the focused skill, preserved the staged scope and read-only boundary, and returned evidence-backed simplifications without aggregate estimates.
 

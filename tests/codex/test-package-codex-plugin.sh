@@ -77,6 +77,8 @@ assert_contains "$archive_paths" "skills/full-code-review/SKILL.md" "archive inc
 assert_contains "$archive_paths" "skills/full-code-review/agents/openai.yaml" "archive includes full-code-review OpenAI metadata"
 assert_contains "$archive_paths" "skills/jcodemunch/SKILL.md" "archive includes the jCodeMunch skill"
 assert_contains "$archive_paths" "skills/jcodemunch/agents/openai.yaml" "archive includes jCodeMunch OpenAI metadata"
+assert_contains "$archive_paths" "skills/codegraph-usage/SKILL.md" "archive includes the CodeGraph skill"
+assert_contains "$archive_paths" "skills/codegraph-usage/agents/openai.yaml" "archive includes CodeGraph OpenAI metadata"
 assert_contains "$archive_paths" "skills/ponytail-review/SKILL.md" "archive includes the focused ponytail-review skill"
 assert_contains "$archive_paths" "skills/ponytail-review/agents/openai.yaml" "archive includes ponytail-review OpenAI metadata"
 assert_contains "$archive_paths" "skills/ponytail-audit/SKILL.md" "archive includes the repository-wide ponytail-audit skill"
@@ -86,7 +88,7 @@ assert_contains "$archive_paths" "assets/app-icon.png" "archive includes plugin 
 skill_count="$(printf '%s\n' "$archive_paths" | sed -n 's#^skills/\([^/]*\)/SKILL\.md$#\1#p' | wc -l | tr -d ' ')"
 metadata_count="$(printf '%s\n' "$archive_paths" | sed -n 's#^skills/\([^/]*\)/agents/openai\.yaml$#\1#p' | wc -l | tr -d ' ')"
 assert_equals "$metadata_count" "$skill_count" "every packaged skill has OpenAI metadata"
-assert_equals "$skill_count" "11" "archive contains exactly the eleven retained skills"
+assert_equals "$skill_count" "12" "archive contains exactly the twelve retained skills"
 
 zip_times="$(python3 - "$archive" <<'PY'
 import sys

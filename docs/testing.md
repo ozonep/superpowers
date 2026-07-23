@@ -5,7 +5,7 @@
 `tests/codex/run-tests.sh` verifies:
 
 - no foreign runtime entry points remain and `AGENTS.md` is a readable regular file;
-- exactly the eleven retained skills are packaged;
+- exactly the twelve retained skills are packaged;
 - skill frontmatter, trigger descriptions, word budgets, model-agnostic prompting, and OpenAI metadata are valid;
 - skill text requests observable evidence rather than private reasoning traces;
 - marketplace and manifest metadata agree, including the three-prompt runtime limit;
@@ -18,6 +18,8 @@ These checks validate structure and packaging, not stochastic workflow behavior.
 
 Ten skill prompts were rewritten on July 23. Their historical five-run campaigns exercised earlier wording, so none of those results validates the current prompt source. All ten rewritten prompts remain pending complete representative re-evaluation.
 
+The new `codegraph-usage` skill has no historical campaign. Its exact prompt remains pending complete representative re-evaluation.
+
 Only these July 23 live probes have been performed:
 
 - A one-turn GPT-5.6 Sol `xhigh` `grilling` probe discovered the skill, recommended rejecting indefinite caching, asked exactly one decision question, and stopped without implementing.
@@ -25,6 +27,7 @@ Only these July 23 live probes have been performed:
 - An exact-current-source GPT-5.6 Sol `xhigh` composition probe selected `grilling` with `domain-modeling`, recommended separating customer organization from login identity, asked exactly one question, produced no glossary, model report, ADR, or implementation, and left HTTP versus events unresolved.
 - An exact-current-source GPT-5.6 Sol `xhigh` design-only `ponytail` probe returned a narrow bounded-cache API and its material concurrency and retention trade-offs without attempting edits.
 - A GPT-5.6 Sol `xhigh` `full-code-review` probe selected the skill and exercised its read-only self-review workflow. It exposed an all-files wording gap that was corrected afterward, so it is not validation of the exact final prompt text.
+- Three isolated Codex CLI `0.145.0-alpha.30` probes exercised the exact `codegraph-usage` prompt against CodeGraph `1.5.0` and a temporary 16-file indexed copy. An implicit GPT-5.6 Sol `xhigh` request beginning “Using CodeGraph” selected the skill; explicit `xhigh` and `max` requests selected it as well. Every run discovered the deferred `codegraph_explore` MCP tool, used it first, stayed read-only, made at most one narrower graph follow-up, and used native reads only after CodeGraph reported trimmed source or for unindexed Bash, JSON, and Markdown. The final answers cited exact lines and stated evidence limits. These are one-run spot checks without a no-skill control on a small repository; they do not cover stale-index, wrong-worktree, no-index, CLI-fallback, or edit workflows and are not a complete representative campaign.
 
 `caveman` was unchanged on July 23. Its existing three source-matched fresh-context checks remain applicable: a two-sentence hash-table explanation, a safety-complete PostgreSQL recovery answer under 55 words, and a detailed merge-sort explanation when depth was explicitly requested. It has not received a complete five-run skill campaign.
 

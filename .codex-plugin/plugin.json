@@ -24,6 +24,7 @@
     "bounded-contexts",
     "design-interview",
     "grilling",
+    "codegraph",
     "jcodemunch",
     "mcp",
     "code-navigation",
@@ -34,7 +35,7 @@
   "interface": {
     "displayName": "Superpowers for Codex",
     "shortDescription": "Measured TDD, reviews, modeling, and precise code retrieval",
-    "longDescription": "Eleven Codex-native skills for strict test-first implementation, comprehensive and simplification-only code review, repository-wide simplification audits, review-feedback handling, bounded parallel delegation, domain modeling, design interviews, minimal implementation, concise technical communication, and jCodeMunch-based code retrieval.",
+    "longDescription": "Twelve Codex-native skills for strict test-first implementation, comprehensive and simplification-only code review, repository-wide simplification audits, review-feedback handling, bounded parallel delegation, domain modeling, design interviews, minimal implementation, concise technical communication, and CodeGraph or jCodeMunch-based code retrieval.",
     "developerName": "Jesse Vincent",
     "category": "Developer Tools",
     "capabilities": [

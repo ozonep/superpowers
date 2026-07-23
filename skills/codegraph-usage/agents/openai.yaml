@@ -1,0 +1,10 @@
+interface:
+  display_name: "CodeGraph Usage"
+  short_description: "Navigate indexed source with CodeGraph"
+  default_prompt: "Use $codegraph-usage to retrieve current source and structural context from this indexed project before making conclusions or edits."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "codegraph"
+      description: "CodeGraph MCP server for read-only indexed source and relationship queries"

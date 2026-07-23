@@ -324,8 +324,14 @@ def _assert_exact_mapping(value, keys, location):
 
 def _validate_metadata(metadata, skill_name):
     expected_top_level = {"interface"}
+    mcp_dependencies = {
+        "codegraph-usage": "codegraph",
+        "jcodemunch": "jcodemunch",
+    }
+    if skill_name in mcp_dependencies:
+        expected_top_level.add("dependencies")
     if skill_name == "jcodemunch":
-        expected_top_level |= {"dependencies", "policy"}
+        expected_top_level.add("policy")
     _assert_exact_mapping(metadata, expected_top_level, skill_name)
 
     interface = metadata["interface"]
@@ -339,27 +345,31 @@ def _validate_metadata(metadata, skill_name):
             f"{skill_name}.interface.{key} must be a non-empty string"
         )
 
-    if skill_name == "jcodemunch":
+    if skill_name in mcp_dependencies:
         dependencies = metadata["dependencies"]
-        _assert_exact_mapping(dependencies, {"tools"}, "jcodemunch.dependencies")
+        _assert_exact_mapping(dependencies, {"tools"}, f"{skill_name}.dependencies")
         tools = dependencies["tools"]
         assert isinstance(tools, list) and len(tools) == 1, (
-            "jcodemunch.dependencies.tools must contain exactly one tool"
+            f"{skill_name}.dependencies.tools must contain exactly one tool"
         )
         tool = tools[0]
         _assert_exact_mapping(
             tool,
             {"type", "value", "description"},
-            "jcodemunch.dependencies.tools[0]",
+            f"{skill_name}.dependencies.tools[0]",
         )
-        assert tool["type"] == "mcp", "jcodemunch dependency must be an MCP tool"
-        assert tool["value"] == "jcodemunch", (
-            "jcodemunch dependency must target the jcodemunch MCP server"
+        assert tool["type"] == "mcp", (
+            f"{skill_name} dependency must be an MCP tool"
+        )
+        assert tool["value"] == mcp_dependencies[skill_name], (
+            f"{skill_name} dependency must target the "
+            f"{mcp_dependencies[skill_name]} MCP server"
         )
         assert isinstance(tool["description"], str) and tool["description"], (
-            "jcodemunch dependency description must be a non-empty string"
+            f"{skill_name} dependency description must be a non-empty string"
         )
 
+    if skill_name == "jcodemunch":
         policy = metadata["policy"]
         _assert_exact_mapping(policy, {"allow_implicit_invocation"}, "jcodemunch.policy")
         assert policy["allow_implicit_invocation"] is False, (
@@ -375,6 +385,7 @@ root = Path(__file__).resolve().parents[2]
 skills_root = root / "skills"
 expected = {
     "caveman",
+    "codegraph-usage",
     "dispatching-parallel-agents",
     "domain-modeling",
     "full-code-review",
@@ -455,5 +466,21 @@ for required_term in (
     "register_edit",
 ):
     assert required_term in jcodemunch_text, f"jcodemunch skill omits {required_term}"
+
+codegraph_text = (skills_root / "codegraph-usage/SKILL.md").read_text(
+    encoding="utf-8"
+)
+for required_term in (
+    "codegraph_explore",
+    "codegraph explore",
+    "projectPath",
+    "codegraph affected",
+    "worktree",
+    "best-effort",
+    "codegraph init",
+):
+    assert required_term in codegraph_text, (
+        f"codegraph-usage skill omits {required_term}"
+    )
 
 print("Codex skill structure looks good")
