@@ -1,14 +1,13 @@
 ---
 name: receiving-code-review
-description: Use when the user supplies code-review feedback or asks to assess, address, or respond to review comments. Verify suggestions against repository evidence, apply only authorized valid changes, and give evidence-backed pushback or blockers for the rest. Do not use for a fresh code review.
+description: Use when the user supplies code-review feedback or asks to assess, fix, or respond to review comments. Verify and classify each comment against repository evidence, and apply only authorized valid changes. Do not use for a fresh code review.
 ---
 
 # Receiving Code Review
 
 ## Outcome
 
-Every in-scope comment gets an evidence-backed disposition. 
-Authorized valid changes are implemented and verified; invalid, stale, or out-of-scope comments get a concise reason; unresolved ambiguity becomes the smallest blocker.
+Give every requested comment an evidence-backed disposition. Implement and verify authorized valid changes; explain invalid, stale, or out-of-scope comments concisely; reduce unresolved ambiguity to the smallest blocker.
 
 ## Authority
 
@@ -19,26 +18,27 @@ Authorized valid changes are implemented and verified; invalid, stale, or out-of
 ## Evaluate each comment
 
 1. Gather the exact comment, referenced revision, relevant diff, repository instructions, intended behavior, and nearby tests.
-2. Classify it as valid, already satisfied or stale, unclear, incorrect or incompatible, or optional and out of scope.
-3. Verify claims against the implementation, callers, public contracts, supported platforms, and tests. Reviewer identity or seniority is not evidence.
-4. Decide independently for each comment unless multiple comments depend on the same unresolved choice or root cause.
+2. Separate the underlying concern from the reviewer’s suggested remedy. A valid concern does not make the proposed implementation correct.
+3. Classify the comment as valid, partially valid, already satisfied or stale, unclear, incorrect or incompatible, or optional and out of scope.
+4. Verify claims against the current implementation, plausible callers, public contracts, supported platforms, and tests. Treat reviewer identity or seniority as context, not evidence.
+5. Decide independently for each comment, then group comments only when they share a verified root cause or unresolved choice.
 
-Ask only when ambiguity would materially change the result and cannot be resolved from available evidence. Continue independent clear items. 
-Pause only the dependent group when partial implementation would be risky, and request the smallest missing fact.
+Ask only when ambiguity would materially change the result and cannot be resolved from available evidence. Continue independent clear items. Pause only the dependent group when partial implementation would be risky, and request the smallest missing fact.
 
 ## Apply validated feedback
 
 - Fix the underlying issue once; deduplicate comments that point to the same cause.
 - Preserve user decisions, repository contracts, compatibility, and unrelated work. Push back with evidence when a suggestion would violate them.
 - Do not infer that code is unused from text search alone. Check public, dynamic, generated, and external call paths that are plausible for the repo.
+- For behavior fixes, reproduce the reported failure with a focused test before implementation when practical.
 - Run targeted validation for changed behavior, then any broader checks required by the repository. Do not claim a comment is fixed against stale results.
 
 ## Report
 
-Lead with the verified result, not generic praise or apology. For each non-obvious item, state its disposition and decisive evidence. 
-Report applied changes with validation, declined changes with technical reasoning, and blocked items with the missing fact. 
-Correct disproved pushback briefly and continue.
+Lead with the verified result, not generic praise or apology. Account for every requested comment by identifier; group duplicates only after mapping each one to its disposition.
+
+Report applied changes with fresh validation, declined changes with decisive technical evidence, and blocked items with the exact missing fact. Correct disproved pushback briefly and continue.
 
 ## Completion bar
 
-Every requested comment has a clear disposition, every authorized change is validated, remaining uncertainty is explicit, and no external reply or thread resolution occurred without authorization.
+Complete only after every requested comment has a clear disposition, every authorized change is validated, remaining uncertainty is explicit, and no external reply, unrelated-thread action, or thread resolution occurred without authorization.

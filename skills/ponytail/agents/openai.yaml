@@ -1,4 +1,4 @@
 interface:
   display_name: "Ponytail"
-  short_description: "Choose the smallest correct coding solution"
-  default_prompt: "Use $ponytail to implement this request with the smallest correct, maintainable change."
+  short_description: "Implement the smallest correct coding change"
+  default_prompt: "Use $ponytail to implement this request as the smallest correct, validated change."

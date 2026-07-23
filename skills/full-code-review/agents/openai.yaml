@@ -1,4 +1,4 @@
 interface:
   display_name: "Full Code Review"
   short_description: "Review changes across correctness, standards, and simplicity"
-  default_prompt: "Use $full-code-review to review these changes for correctness, repository standards, and unnecessary complexity."
+  default_prompt: "Use $full-code-review to perform a read-only review for verified correctness, standards, and simplicity findings."

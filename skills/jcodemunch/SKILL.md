@@ -10,7 +10,7 @@ description: Use when Codex must locate, read, understand, review, debug, plan, 
 - On first use in a task, call `jcodemunch_guide`. Follow its version-matched policy when it differs from this playbook.
 - Use jCodeMunch for source discovery, reads, relationships, and impact; use native tools only for editing and explicitly permitted commands.
 - Never explore source with shell or generic search/read tools. Directly read only a specific file identified by jCodeMunch or the user when required immediately before editing.
-- If jCodeMunch is unavailable or the repository cannot be indexed, immediately report the blocker and stop. 
+- If jCodeMunch is unavailable or the repository cannot be indexed, immediately report the blocker and stop.
 
 ## Enter the repository
 
@@ -23,9 +23,10 @@ After reading the guide, stay on the exposed tool surface:
 ## Retrieve evidence
 
 - Orient with repository, file-tree, or file outlines. Find code by symbol and fetch only selected implementations; use text search for strings, comments, configuration, and regex.
-- Use structural reference, dependency, hierarchy, impact, and safety tools for relationship or change questions. 
+- Use structural reference, dependency, hierarchy, impact, and safety tools for relationship or change questions.
 - Use hybrid semantic search when terminology is conceptual, synonymous, or legacy-heavy.
 - Require verified exact source before quoting or editing. Check confidence, freshness, coverage, negative evidence, truncation, and budget warnings before concluding. Widen one scoped query when evidence is weak or conflicting; otherwise report the gap.
+- Stop retrieval when the evidence supports the answer or change; do not treat the available context budget as a target.
 - Avoid rereading session evidence. Accept compact output when parseable and retry once as JSON when it is not.
 
 ## Complete changes

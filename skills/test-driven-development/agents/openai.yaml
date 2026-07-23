@@ -1,4 +1,4 @@
 interface:
   display_name: "Test-Driven Development"
   short_description: "Implement behavior changes through test-first cycles"
-  default_prompt: "Use $test-driven-development to implement this behavior with a failing test first and fresh final validation."
+  default_prompt: "Use $test-driven-development to implement this change with appropriate RED/GREEN or pre/post characterization evidence and fresh final validation."

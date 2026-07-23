@@ -1,4 +1,4 @@
 interface:
   display_name: "Dispatching Parallel Agents"
   short_description: "Split independent work across Codex subagents"
-  default_prompt: "Use $dispatching-parallel-agents to split this task into independent read-only workstreams and synthesize their verified results."
+  default_prompt: "Use $dispatching-parallel-agents to partition this task into independent workstreams, coordinate subagents, and synthesize verified results."

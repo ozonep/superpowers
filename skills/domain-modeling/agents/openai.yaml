@@ -1,4 +1,4 @@
 interface:
   display_name: "Domain Modeling"
-  short_description: "Clarify domain language, invariants, and ownership"
-  default_prompt: "Use $domain-modeling to clarify this domain's context-specific language, ownership, invariants, contradictions, and open decisions."
+  short_description: "Model domain language, rules, and fact ownership"
+  default_prompt: "Use $domain-modeling to define this domain's bounded contexts, language, invariants, fact ownership, contradictions, and open decisions."

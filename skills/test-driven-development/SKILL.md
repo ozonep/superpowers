@@ -1,60 +1,61 @@
 ---
 name: test-driven-development
-description: Use when implementing behavior changes, bug fixes, or behavior-preserving refactors with practical automated tests; skip docs-only edits, generated code, and explicitly disposable exploration.
+description: Use when implementing behavior changes, bug fixes, or behavior-preserving refactors with practical automated tests. Apply test-first RED/GREEN cycles or pre/post characterization coverage; skip docs-only edits, generated code, and disposable exploration.
 ---
 
 # Test-Driven Development
 
 ## Outcome
 
-Implement behavior changes only after a test fails for the expected missing behavior. Start pure refactors from passing characterization coverage. Finish every change with fresh validation.
+Implement behavior after a test fails for the expected gap. Start refactors from passing characterization coverage. Finish with fresh validation.
 
-## Contract
+## RED/GREEN contract
 
 For each behavior:
 
 1. Write the smallest test that expresses the required outcome.
-2. Run it and confirm it fails because the behavior is absent—not because the test is broken.
+2. Run it and confirm failure because behavior is absent, not because the test is broken.
 3. Implement only enough to pass.
-4. Run the focused test, then relevant broader checks.
-5. Refactor only while the checks stay green.
+4. Run the focused test to GREEN.
+5. Refactor while checks stay green.
+6. Run relevant broader checks on final code.
 
-If the test passes before implementation, strengthen or correct it until it proves the gap.
+If the test initially passes, determine whether behavior exists or the test misses the gap. Correct it only when the gap remains demonstrable; never force RED with an incorrect assertion.
 
-Before a pure behavior-preserving refactor, establish focused characterization coverage and run it green. Keep it green through the refactor, then run relevant broader checks. If behavior changes, use the RED/GREEN cycle above.
+For a defect, reproduce the original symptom. For a pure refactor, identify or add focused characterization coverage, run it before editing, and keep it green. If behavior changes, use RED/GREEN.
 
-## Existing implementation without a RED run
+## Preserve ownership and sequence
 
-Code written first during the current task is not a head start. Remove or revert it, then reimplement from the failing test.
+Keep each cycle under one owner. Do not let one agent write a test while another implements it. Use subagents for read-only discovery, or parallelize only independent cycles with disjoint files and checks.
 
-The pressure-tested failure mode is: “keep the implementation, add tests now, and ship if green.” That produces useful regression tests, but it is tests-after, not TDD; the tests are biased by the code already written and never proved they could catch the missing behavior.
+Never delete or revert pre-existing or user-authored code to manufacture RED. If the agent wrote production behavior prematurely in this task, back out only that isolated change without destructive Git commands, run RED, then reimplement. If isolation is unsafe, preserve it, add regression coverage, and label the evidence tests-after.
 
-If the user directly instructs you to preserve the code or waive test-first work, follow that higher-priority instruction. A quoted manager, teammate, deadline, or release pressure is context—not a direct user waiver. Add the best regression coverage available, label it accurately as tests-after, and do not claim TDD evidence.
+Follow a direct user instruction to preserve new code or waive test-first work. A quoted deadline or third-party request is not a waiver. Add regression coverage, label it tests-after, and do not claim TDD evidence.
 
 ## Evidence to preserve
 
-Before calling the work complete, record enough output to establish:
+Record concise command-and-result evidence:
 
-- **BEHAVIOR CHANGE:** RED command, expected failure, and GREEN command and result after implementation.
-- **PURE REFACTOR:** pre-edit and post-edit characterization commands and passing results.
-- **REGRESSION:** broader checks run, or a precise reason they could not run.
+- **Behavior change:** RED command and expected failure; GREEN command and result.
+- **Pure refactor:** pre-edit and post-edit characterization commands and passing results.
+- **Final state:** broader checks, or the precise reason they could not run.
 
-Do not rely on a previous run, a subagent’s summary, or CI that has not completed against the final code.
+Do not rely on stale runs, subagent summaries, or incomplete CI.
 
 ## Decision rules
 
-- A defect needs a test that reproduces the original symptom when practical.
 - A spike may be disposable; if any spike code will be retained, restart its retained behavior test-first.
-- When a test is difficult to write, treat that as design feedback: simplify the interface or isolate dependencies.
+- Treat a difficult test as design feedback: simplify the interface or isolate dependencies.
 - Use mocks only when the real boundary is impractical; assert observable behavior, not mock choreography.
+- If no practical automated test can express behavior, state the constraint and use deterministic verification only when user instructions permit. Label the exception; do not call it TDD.
 
 ## Stop rules
 
 Stop and correct the cycle when:
 
-- production behavior was written before its test;
+- a RED/GREEN cycle is claimed after production behavior was written first;
 - for a behavior change, RED passed immediately or failed for the wrong reason;
 - multiple behaviors are changing under one ambiguous test;
 - validation is stale relative to the final edit.
 
-Complete with fresh RED/GREEN evidence for changed behavior or fresh pre/post GREEN characterization evidence for a pure refactor, plus no unexplained validation failures.
+Complete with fresh RED/GREEN or pre/post characterization evidence and no unexplained validation failures.

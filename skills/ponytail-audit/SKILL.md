@@ -1,9 +1,11 @@
 ---
 name: ponytail-audit
-description: Use when the user requests a read-only, repository-wide audit specifically for overengineering, unnecessary complexity, removable code or dependencies, or behavior-preserving simplification. Do not use for change-set reviews, comprehensive correctness, security, or performance audits, or requests to apply fixes.
+description: Use when the user requests a read-only, repository-wide audit specifically for overengineering, unnecessary complexity, removable code or dependencies, or behavior-preserving simplification. Do not use for a PR or diff review, a comprehensive correctness, security, or performance audit, or a request to apply fixes.
 ---
 
 # Ponytail Audit
+
+## Outcome
 
 Audit the current repository for verified, behavior-preserving simplifications without editing files or Git state.
 
@@ -11,21 +13,26 @@ Audit the current repository for verified, behavior-preserving simplifications w
 
 Honor any path or exclusion the user gives. Otherwise audit the whole current worktree, including relevant untracked source. Inspect applicable repository instructions, architecture and user-facing documentation, source, tests, manifests, dependency and lock files, build configuration, and supported platforms.
 
-Map the major components and dependency surfaces before investigating likely hotspots. Exclude generated or build output and third-party vendored internals; account for their inclusion when it is itself a candidate cost. State any inaccessible, skipped, or sampled area.
+Map major components, public boundaries, and dependency surfaces before investigating hotspots. Exclude generated output, build output, and vendored internals; still assess whether including them is itself an avoidable cost. State every inaccessible, skipped, or sampled area.
 
 ## Finding bar
 
-Report only verified opportunities tagged as:
+Report only verified opportunities:
 
-- `delete`: remove code, a dependency, configuration, or flexibility with no required consumer;
-- `reuse`: replace a local implementation with an existing repository capability;
-- `stdlib` or `native`: use a standard-library or platform capability that covers the required semantics and supported environments;
-- `yagni`: collapse a speculative abstraction, option, or extension point after disproving meaningful variation;
-- `shrink`: remove duplication or delegating indirection without obscuring a real boundary.
+- `delete`: Remove code, a dependency, configuration, or flexibility with no required consumer.
+- `reuse`: Replace a local implementation with an existing repository capability.
+- `stdlib` or `native`: Use a standard-library or platform capability covering the required semantics and supported environments.
+- `yagni`: Collapse a speculative abstraction, option, or extension point after checking for meaningful variation.
+- `shrink`: Remove duplication or delegating indirection without obscuring a real boundary.
 
-Before reporting a candidate, trace callers and references across source, tests, configuration, build tooling, public APIs, and plausible dynamic, generated, or external use. Check dependency declarations and locks plus the exact replacement's semantics and platform support. One implementation, one caller, text-search absence, or fewer files or lines is not sufficient evidence.
+Before reporting a candidate:
 
-Preserve correctness, security controls, validation, accessibility, data integrity, compatibility, required observability, relevant tests, meaningful architectural boundaries, and material performance. Discard speculative claims.
+1. Identify the exact current cost and smallest concrete replacement.
+2. Trace callers and references across source, tests, configuration, build tooling, public APIs, and plausible dynamic, generated, or external use.
+3. Check declarations and lock data for dependencies, plus the replacement's exact semantics and supported platforms.
+4. Verify preservation of correctness, security controls, validation, accessibility, data integrity, compatibility, required observability, relevant tests, meaningful boundaries, and material performance.
+
+Treat one implementation, one caller, text-search absence, or a lower line count as a lead, not proof. Discard claims that depend on unsupported assumptions.
 
 ## Report
 
@@ -37,4 +44,4 @@ Name the concrete current cost and exact replacement. Do not invent aggregate li
 
 Then state the audited scope, validation performed, and residual uncertainty. Note any material correctness or security risk separately and recommend the appropriate focused review.
 
-Complete after covering every major in-scope component and dependency surface and verifying each reported finding. Stop searching an area once its implementation, consumers, contract, and replacement semantics are established; do not repeat equivalent scans. Do not call a sampled audit exhaustive.
+Complete after covering every major in-scope component and dependency surface and verifying each reported finding. Stop searching an area once its responsibilities, consumers, contract, and replacement semantics are established. Do not repeat equivalent searches under synonymous hypotheses, and do not call a sampled audit exhaustive.

@@ -31,6 +31,12 @@ forbidden=(
 )
 
 failures=0
+
+if [[ ! -f "$REPO_ROOT/AGENTS.md" || -L "$REPO_ROOT/AGENTS.md" ]]; then
+  echo "[FAIL] AGENTS.md must be a readable Codex-native repository guide"
+  failures=$((failures + 1))
+fi
+
 for path in "${forbidden[@]}"; do
   if [[ -e "$REPO_ROOT/$path" ]]; then
     echo "[FAIL] non-Codex path remains: $path"

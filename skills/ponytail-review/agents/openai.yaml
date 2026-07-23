@@ -1,4 +1,4 @@
 interface:
   display_name: "Ponytail Review"
-  short_description: "Find verified behavior-preserving simplifications"
+  short_description: "Review changes for verified simplifications"
   default_prompt: "Use $ponytail-review to find verified behavior-preserving simplifications in these changes without editing them."
