@@ -88,7 +88,7 @@ assert_contains "$archive_paths" "assets/app-icon.png" "archive includes plugin 
 skill_count="$(printf '%s\n' "$archive_paths" | sed -n 's#^skills/\([^/]*\)/SKILL\.md$#\1#p' | wc -l | tr -d ' ')"
 metadata_count="$(printf '%s\n' "$archive_paths" | sed -n 's#^skills/\([^/]*\)/agents/openai\.yaml$#\1#p' | wc -l | tr -d ' ')"
 assert_equals "$metadata_count" "$skill_count" "every packaged skill has OpenAI metadata"
-assert_equals "$skill_count" "12" "archive contains exactly the twelve retained skills"
+assert_equals "$skill_count" "11" "archive contains exactly the eleven retained skills"
 
 zip_times="$(python3 - "$archive" <<'PY'
 import sys

@@ -384,7 +384,6 @@ _run_in_file_fixtures()
 root = Path(__file__).resolve().parents[2]
 skills_root = root / "skills"
 expected = {
-    "caveman",
     "codegraph-usage",
     "dispatching-parallel-agents",
     "domain-modeling",

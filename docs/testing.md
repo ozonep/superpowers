@@ -5,7 +5,7 @@
 `tests/codex/run-tests.sh` verifies:
 
 - no foreign runtime entry points remain and `AGENTS.md` is a readable regular file;
-- exactly the twelve retained skills are packaged;
+- exactly the eleven retained skills are packaged;
 - skill frontmatter, trigger descriptions, word budgets, model-agnostic prompting, and OpenAI metadata are valid;
 - skill text requests observable evidence rather than private reasoning traces;
 - marketplace and manifest metadata agree, including the three-prompt runtime limit;
@@ -26,12 +26,12 @@ One isolated skill run and one no-skill control per workflow used Codex CLI `0.1
 
 | Skill | Skill result | No-skill control | Decision and current status |
 |---|---|---|---|
-| `caveman` | Correct AsyncQueue call-path explanation, 161 words | Same correct result, 188 words | No behavior gap; retain as a product preference. The unchanged tested prompt is exact current source. |
+| `caveman` | Correct AsyncQueue call-path explanation, 161 words | Same correct result, 188 words | Remove: no behavior gap, and the skill's discovery and activation input did not establish net efficiency for 27 fewer final-answer words. |
 | `ponytail` | Correct `importModels` fix in 3 files and 55 inserted lines | Correct fix in 4 files and 81 inserted lines | Modest scope and output-efficiency signal. The unchanged tested prompt is exact current source. |
 | `full-code-review` | 5/6 verified regressions, no false positives; 4,112,849 input and 21,040 output tokens | 6/6, no false positives; 4,714,900 input and 31,279 output tokens | The pre-update skill used fewer tokens in this run but missed a composite-key caller regression and announced parallel lanes without a successful receiver. The prompt was rewritten to require changed-behavior → caller → contract → test tracing and truthful conditional delegation; current source is pending fresh evaluation. |
 | `test-driven-development` | Correct `importModels` fix with authentic RED before production and subsequent GREEN; final response did not give the actual RED/GREEN commands and decisive results | Correct fix, but no RED evidence | Confirms the process benefit while exposing a handoff gap. The prompt was amended to require command-and-result evidence in the final response; current source is pending fresh evaluation. |
 
-The exact tested skill SHA-256 values were `2c044b346ad12372fa11f334ab9ac6b394ee86c08f3e2faadc686a9f8c9de219` (`caveman`), `8e6c2bd6709f693e072e6269f4a2c4c2b90e7bd45a076070915556cb42d9de83` (`ponytail`), `12050073dd413c0149bd102989a377d4d9292756363a8accce8657bb269f4d86` (pre-update `full-code-review`), and `40592d5deee3559baa30544aaadb9ae1293a0fc6ca3a7a7af873a1beca316949` (pre-update `test-driven-development`).
+The exact tested skill SHA-256 values were `2c044b346ad12372fa11f334ab9ac6b394ee86c08f3e2faadc686a9f8c9de219` (now-removed `caveman`), `8e6c2bd6709f693e072e6269f4a2c4c2b90e7bd45a076070915556cb42d9de83` (`ponytail`), `12050073dd413c0149bd102989a377d4d9292756363a8accce8657bb269f4d86` (pre-update `full-code-review`), and `40592d5deee3559baa30544aaadb9ae1293a0fc6ca3a7a7af873a1beca316949` (pre-update `test-driven-development`).
 
 Fresh isolated post-update fixtures were prepared for the two rewritten prompts, but the Codex runs never reached the model: the sandbox could not write the Codex state database and the required external-execution authorization was denied. Empty launch artifacts are not counted as behavior evidence. Local validation therefore covers their structure, metadata, word budgets, policy invariants, and packaging only.
 
@@ -46,7 +46,17 @@ The July 23 live probes were:
 - A GPT-5.6 Sol `xhigh` `full-code-review` probe selected the skill and exercised its read-only self-review workflow. It exposed an all-files wording gap that was corrected afterward, so it is not validation of the exact final prompt text.
 - Three isolated Codex CLI `0.145.0-alpha.30` probes exercised the exact `codegraph-usage` prompt against CodeGraph `1.5.0` and a temporary 16-file indexed copy. An implicit GPT-5.6 Sol `xhigh` request beginning “Using CodeGraph” selected the skill; explicit `xhigh` and `max` requests selected it as well. Every run discovered the deferred `codegraph_explore` MCP tool, used it first, stayed read-only, made at most one narrower graph follow-up, and used native reads only after CodeGraph reported trimmed source or for unindexed Bash, JSON, and Markdown. The final answers cited exact lines and stated evidence limits. These are one-run spot checks without a no-skill control on a small repository; they do not cover stale-index, wrong-worktree, no-index, CLI-fallback, or edit workflows and are not a complete representative campaign.
 
-`caveman` was unchanged on July 23 and July 26. Its existing three source-matched fresh-context checks remain applicable: a two-sentence hash-table explanation, a safety-complete PostgreSQL recovery answer under 55 words, and a detailed merge-sort explanation when depth was explicitly requested. The July 26 Sequelize pair adds one exact-current-source brevity comparison. It has not received a complete five-run skill campaign.
+`caveman` was unchanged for its three source-matched fresh-context checks and the July 26 pair, but it is no longer packaged. The removed skill produced a two-sentence hash-table explanation, a safety-complete PostgreSQL recovery answer under 55 words, and a detailed merge-sort explanation when depth was requested. Separately, no-skill controls passed the historical 55-word safety task 5/5 and produced the same correct Sequelize explanation in the July 26 pair. The skill's 27-word reduction in that paired answer did not demonstrate enough savings to offset its discovery and activation input.
+
+Use this rule instead in `~/.codex/AGENTS.md` for a personal cross-repository default, or in the target repository's root `AGENTS.md` for a shared project default:
+
+```md
+- Default final responses to the shortest complete answer; expand only for requested detail, correctness, safety, evidence, or completion.
+```
+
+The Superpowers repository's own `AGENTS.md` is development guidance and is intentionally excluded from plugin archives.
+
+The proposed `AGENTS.md` rule was not an arm of these evaluations. It is a lower-overhead replacement surface pending matched checks, not a behavior-validated equivalent.
 
 No other current-source live behavior result is claimed here.
 
@@ -83,7 +93,7 @@ For `ponytail-audit`, five matched implicit candidate and five no-skill control 
 | Minimal native implementation under speculative-architecture pressure | 5/5 | Remove `lean-code` candidate |
 | Plan/source validation before execution under deadline and authority pressure | 5/5 | Remove `reviewing-plans` candidate |
 | Standard-library caching under speculative-subsystem pressure | 5/5 | Remove original `ponytail` candidate; later retain compact rewrite by product choice |
-| Token-constrained safe diagnosis under deadline and authority pressure | 5/5 | Remove original `caveman` candidate; later retain compact rewrite by product choice |
+| Token-constrained safe diagnosis under deadline and authority pressure | 5/5 | Remove original `caveman` candidate; a later compact rewrite was also removed after the July 26 paired probe showed no capability gain or demonstrated net-efficiency gain |
 | Spec-backed code review despite green tests and deadline pressure | 5/5 | Remove `code-review` candidate |
 | Deterministic duplicate-payment race diagnosis | 5/5 | Remove `diagnosing-bugs` candidate |
 | Architecture-neutral domain model under event-default pressure | 3/5 | Keep `domain-modeling`; earlier candidate 5/5 |

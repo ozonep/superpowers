@@ -34,7 +34,7 @@ Ten skill prompts were rewritten on July 23, 2026. Historical five-run campaigns
 
 On July 26, one paired skill/control probe per workflow used Codex CLI `0.146.0-alpha.3.1`, GPT-5.6 Sol, and `max` effort on isolated Sequelize fixtures:
 
-- `caveman` and its control were equally correct; the unchanged skill answer used 161 words versus 188;
+- the now-removed `caveman` and its control were equally correct; the skill answer used 161 words versus 188, but its discovery and activation input did not establish net efficiency;
 - `ponytail` and its control produced correct fixes; the unchanged skill used three changed files and 55 insertions versus four files and 81 insertions;
 - the pre-update `full-code-review` found five of six verified regressions without false positives, while the control found six of six; and
 - the pre-update `test-driven-development` produced authentic RED/GREEN while the control did not, but omitted decisive command-and-result evidence from its final response.
@@ -49,7 +49,7 @@ Earlier live checks are limited to:
 - one exact-current-source GPT-5.6 Sol `xhigh` design-only `ponytail` turn that returned a minimal bounded-cache API and its concurrency trade-off without attempting repository edits;
 - one GPT-5.6 Sol `xhigh` read-only `full-code-review` self-review that exposed an all-files wording gap; that gap was corrected afterward, so the run does not validate the exact final prompt text.
 
-`caveman` was not changed in the July 23 rewrite. Its three source-matched fresh-context checks therefore remain applicable, although it has not received a complete five-run skill campaign.
+`caveman` was not changed in the July 23 rewrite, but it was removed after the July 26 pair found no measured capability gap and no demonstrated net-token gain. Its earlier source-matched checks remain historical evidence for that removal decision.
 
 ## Structural changes
 
@@ -61,7 +61,9 @@ Earlier live checks are limited to:
 - Made dirty development packaging consume the current working tree.
 - Reduced the original runtime to eleven focused Codex skills.
 - Rejected the later `lean-code` and `reviewing-plans` candidates after every no-skill control passed 5/5.
-- Retained `ponytail` and `caveman` as explicit product preferences despite their earlier no-skill controls passing 5/5; the rewritten `ponytail` prompt remains pending representative behavior evaluation, while unchanged `caveman` retains its source-matched checks.
+- Retained `ponytail` as an explicit product preference despite its earlier no-skill controls passing 5/5; its current prompt has one exact-source paired probe but remains pending representative behavior evaluation.
+- Removed `caveman`: controls were already correct, and its modest final-answer reduction did not demonstrate enough savings to justify skill discovery and activation overhead. Prefer `Default final responses to the shortest complete answer; expand only for requested detail, correctness, safety, evidence, or completion.` in the user's global or target repository `AGENTS.md`.
+- Treat that `AGENTS.md` rule as an untested lower-overhead replacement surface until it passes matched brevity, safety, requested-depth, and evidence-heavy handoff checks.
 - Retained a compact `receiving-code-review` contract for evidence, classification, and action authority despite the earlier review-feedback control passing 5/5; its current rewrite remains pending representative behavior evaluation.
 - Added `jcodemunch` as an explicit Codex-native tool adapter; it delegates version-sensitive policy to the server's self-guide and keeps only compact routing, evidence, freshness, and reindexing invariants locally.
 - Retained `ponytail-review` as an explicit focused-review entry point despite five GPT-5.6 Sol controls finding the original draft redundant; an earlier optimized revision separated read-only simplification review from `ponytail` implementation and `full-code-review` comprehensive review and passed five fresh-context `max`-effort candidate runs.
@@ -81,4 +83,5 @@ Earlier live checks are limited to:
 - [Prompting guidance for GPT-5.6 Sol](https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6)
 - [Build skills](https://developers.openai.com/codex/build-skills)
 - [Build plugins](https://developers.openai.com/codex/build-plugins)
+- [AGENTS.md guidance](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
 - [Codex subagents](https://developers.openai.com/codex/agent-configuration/subagents)

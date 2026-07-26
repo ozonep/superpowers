@@ -16,14 +16,13 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 - **domain-modeling** — clarifies overloaded language, invariants, and ownership while keeping unresolved architecture choices open.
 - **grilling** — stress-tests a plan interactively with one evidence-backed decision question per turn.
 - **ponytail** — applies a simplicity-first decision ladder to coding work without trading away correctness or explicit requirements.
-- **caveman** — defaults to the shortest complete answer and expands when the request, correctness, or safety requires it.
 - **receiving-code-review** — verifies review comments against repository evidence before applying, declining, or escalating them.
 
-All twelve skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
+All eleven skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
 
 Historical behavior campaigns informed which skills were retained, but they exercised earlier prompt revisions and are not current-source validation. Ten skill prompts were rewritten on July 23, 2026; all ten remain pending complete representative re-evaluation. The new `codegraph-usage` prompt is likewise pending a complete representative campaign.
 
-On July 26, one paired skill/control run for each of `caveman`, `ponytail`, `full-code-review`, and `test-driven-development` used Codex CLI with GPT-5.6 Sol at `max` on isolated Sequelize fixtures. The unchanged `caveman` and `ponytail` prompts remain exact-current-source spot checks. The review and TDD results motivated targeted prompt updates afterward, so their current text remains pending fresh representative evaluation.
+On July 26, one paired skill/control run for each of `caveman`, `ponytail`, `full-code-review`, and `test-driven-development` used Codex CLI with GPT-5.6 Sol at `max` on isolated Sequelize fixtures. The Caveman result led to its removal, the unchanged `ponytail` prompt remains an exact-current-source spot check, and the review and TDD results motivated targeted prompt updates afterward.
 
 Other exact-current-source spot checks cover a standalone `grilling` turn, a combined `grilling` plus `domain-modeling` turn, a design-only `ponytail` request, and three real-MCP `codegraph-usage` probes on GPT-5.6 Sol at `xhigh` or `max`. These are one-run checks, not complete campaigns. An earlier domain-modeling forward test and a read-only `full-code-review` self-review preceded final wording fixes. See [the evaluation notes](docs/testing.md) for scenarios, results, and limits.
 
@@ -42,7 +41,7 @@ Start from the balanced `medium` effort—or lower when it already meets the qua
 
 ## Why the plugin is small
 
-Earlier five-run campaigns were used to choose the plugin's surface. They remain useful design provenance, but—except for the unchanged `caveman` source—they must not be read as validation of the July 23 prompt text.
+Earlier five-run campaigns were used to choose the plugin's surface. They remain useful design provenance, but they must not be read as validation of current prompt text except where an exact-current-source check is identified.
 
 In those historical controls, Codex succeeded 5/5 without extra instructions for design triage, root-cause debugging, implementation planning and execution, fresh completion validation, code review, feedback handling, managed worktrees, and branch-finish boundaries.
 
@@ -56,7 +55,19 @@ Interactive grilling exposed a response-shape gap: 0/5 controls asked one clean 
 
 Ordinary findings-first review already worked without extra prompting, but `full-code-review` is intentionally retained for a broader product requirement. In the July 26 Sequelize pair, its pre-update prompt found five of six verified regressions with no false positives, while the control found all six. The current contract therefore makes changed behavior → callers → contracts → tests an explicit checklist and makes delegation conditional and truthful; this rewrite is pending fresh evaluation.
 
-`ponytail` and `caveman` are also explicit product choices rather than fixes for measured capability gaps: earlier no-skill controls already passed their representative tasks 5/5. Their compact contracts make the preferences discoverable and consistent. In the July 26 pairs, Caveman preserved the same correct answer in 161 versus 188 words, while Ponytail produced the same correct implementation in three changed files and 55 inserted lines versus four files and 81 inserted lines. Both are single-run efficiency signals, not proof of a capability gain or complete representative campaigns.
+`ponytail` is also an explicit product choice rather than a fix for a measured capability gap: its earlier no-skill controls passed 5/5. In the July 26 pair, Ponytail produced the same correct implementation in three changed files and 55 inserted lines versus four files and 81 inserted lines. This is a single-run efficiency signal, not proof of a capability gain or a complete representative campaign.
+
+`caveman` was removed after its July 26 skill and control runs were equally correct. The skill answer used 161 words versus 188, but the 830-byte skill file plus discovery and activation overhead did not demonstrate net token efficiency for that 27-word reduction. Earlier controls also passed the 55-word safety task without it.
+
+Replace that personal or repository-wide preference with this durable `AGENTS.md` rule:
+
+```md
+- Default final responses to the shortest complete answer; expand only for requested detail, correctness, safety, evidence, or completion.
+```
+
+Put it in `~/.codex/AGENTS.md` for a personal cross-repository default, or in a target repository's root `AGENTS.md` when the team wants it on every task. This plugin's own root `AGENTS.md` governs plugin development and is not distributed to installed-plugin users.
+
+This rule is the lower-overhead replacement surface, not a tested equivalent; matched behavior checks remain pending.
 
 `receiving-code-review` is retained on the same basis: native feedback handling passed its earlier control 5/5, while the compact skill adds an explicit evidence, classification, and action-authority contract. Its current rewrite remains pending representative re-evaluation.
 
