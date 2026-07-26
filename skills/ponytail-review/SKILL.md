@@ -26,6 +26,7 @@ Report only verified opportunities:
 - `inline` or `shrink`: Remove indirection or duplication without obscuring a meaningful boundary.
 
 Tie every finding to a changed line or to complexity introduced or made materially worse by the change. Before reporting it, trace plausible public, dynamic, generated, and external use; verify the replacement's semantics and platform support; and check relevant tests and contracts.
+Before citing validation, verify it exercised the changed implementation from the reviewed revision. If it used stale generated or prebuilt output, or provenance is unknown, report that limitation and do not treat the result as validation of the change.
 
 Treat one implementation, one caller, text-search absence, or a lower line count as a lead, not proof. Preserve correctness, security, validation, accessibility, data integrity, compatibility, required observability, relevant tests, meaningful boundaries, and material performance. Discard speculative claims.
 

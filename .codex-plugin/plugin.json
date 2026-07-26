@@ -1,6 +1,6 @@
 {
   "name": "superpowers",
-  "version": "7.0.0+codex.20260726175650",
+  "version": "7.0.0+codex.20260726185946",
   "description": "Measured Codex workflows for strict TDD, code review, safe delegation, domain modeling, design interviews, simplicity, and precision code retrieval.",
   "author": {
     "name": "Jesse Vincent",

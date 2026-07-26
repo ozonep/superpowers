@@ -30,16 +30,18 @@ Higher reasoning does not justify longer prompts. At elevated effort, keep the d
 
 ## Current-source evaluation status
 
-Ten skill prompts were rewritten on July 23, 2026. Historical five-run campaigns explain why those skills and constraints exist, but they exercised earlier prompt revisions and do not validate the current source. All ten rewritten prompts remain pending complete representative re-evaluation.
+Ten skill prompts were rewritten on July 23, 2026. Historical five-run campaigns explain why those skills and constraints exist, but they exercised earlier prompt revisions and do not validate the current source. All ten rewritten prompts remain pending complete representative re-evaluation, although `receiving-code-review` and `ponytail-review` now have one directional exact-current-source paired probe each.
 
 On July 26, one paired skill/control probe per workflow used Codex CLI `0.146.0-alpha.3.1`, GPT-5.6 Sol, and `max` effort on isolated Sequelize fixtures:
 
 - the now-removed `caveman` and its control were equally correct; the skill answer used 161 words versus 188, but its discovery and activation input did not establish net efficiency;
 - `ponytail` and its control produced correct fixes; the unchanged skill used three changed files and 55 insertions versus four files and 81 insertions;
-- the pre-update `full-code-review` found five of six verified regressions without false positives, while the control found six of six; and
-- the pre-update `test-driven-development` produced authentic RED/GREEN while the control did not, but omitted decisive command-and-result evidence from its final response.
+- the pre-update `full-code-review` found five of six verified regressions without false positives, while the control found six of six;
+- the pre-update `test-driven-development` produced authentic RED/GREEN while the control did not, but omitted decisive command-and-result evidence from its final response;
+- the pre-compression `receiving-code-review` scored 20/20 versus 19/20 for its control, but used 3.75× the input, 5.4× the commands, and 57% more elapsed time; and
+- the pre-provenance `ponytail-review` and its control both found all four simplifications without false positives and tied at 25/26 combined quality, while the skill used 20% less input and 38% less output. The skill did not identify that a focused Mocha command exercised a stale compiled parent.
 
-The latter two prompts were rewritten after those runs, so the results are design evidence rather than validation of current source. Fresh post-update launches were blocked before model execution by the Codex state database sandbox and denied external-execution authorization. All four comparisons are one run per arm and are not complete representative campaigns.
+The `full-code-review` and `test-driven-development` prompts were rewritten after their runs, so those two results are design evidence rather than validation of current source. Fresh final-source reruns completed for the other two changes: the 320-word Receiving skill scored 20/20 versus 19/20, but used 1.59× the control's input and 1.82× its elapsed time; the 469-word Ponytail Review scored 26/26 versus 25/26, enforced changed-source provenance, and used fewer total tokens, commands, final words, and elapsed time. All comparisons are one run per arm and are not complete representative campaigns.
 
 Earlier live checks are limited to:
 
@@ -64,9 +66,9 @@ Earlier live checks are limited to:
 - Retained `ponytail` as an explicit product preference despite its earlier no-skill controls passing 5/5; its current prompt has one exact-source paired probe but remains pending representative behavior evaluation.
 - Removed `caveman`: controls were already correct, and its modest final-answer reduction did not demonstrate enough savings to justify skill discovery and activation overhead. Prefer `Default final responses to the shortest complete answer; expand only for requested detail, correctness, safety, evidence, or completion.` in the user's global or target repository `AGENTS.md`.
 - Treat that `AGENTS.md` rule as an untested lower-overhead replacement surface until it passes matched brevity, safety, requested-depth, and evidence-heavy handoff checks.
-- Retained a compact `receiving-code-review` contract for evidence, classification, and action authority despite the earlier review-feedback control passing 5/5; its current rewrite remains pending representative behavior evaluation.
+- Retained `receiving-code-review` as a narrow correctness and authority contract despite the earlier review-feedback control passing 5/5. Compressed it from 484 to 320 words around per-comment disposition, concern/remedy and prerequisite separation, complete-claim evidence, and action boundaries. The fresh score stayed 20/20 versus 19/20 and the command gap narrowed to 13 versus 11, but the skill remained more token- and time-intensive, so no cost-efficiency claim is made.
 - Added `jcodemunch` as an explicit Codex-native tool adapter; it delegates version-sensitive policy to the server's self-guide and keeps only compact routing, evidence, freshness, and reindexing invariants locally.
-- Retained `ponytail-review` as an explicit focused-review entry point despite five GPT-5.6 Sol controls finding the original draft redundant; an earlier optimized revision separated read-only simplification review from `ponytail` implementation and `full-code-review` comprehensive review and passed five fresh-context `max`-effort candidate runs.
+- Retained `ponytail-review` as an explicit focused-review entry point despite five GPT-5.6 Sol controls finding the original draft redundant. Added a compact rule that validation must exercise the reviewed revision or disclose stale, prebuilt, or unknown provenance. In the fresh final-source pair, both arms handled the stale-output gap correctly; the skill scored one contract point higher and used less total input, output, commands, words, and elapsed time.
 - Added `ponytail-audit` as the repository-wide counterpart to `ponytail-review`; an earlier optimized revision narrowed implicit triggering to simplification-only audits, verified use and replacement semantics, reported coverage gaps, and removed guessed aggregate savings and unsupported persistent-mode instructions. Five matched GPT-5.6 Sol implicit-discovery runs against that earlier revision selected it 5/5 and preserved all planted findings while producing reports 23% shorter on average than five no-skill controls.
 - Rejected `code-review`, `diagnosing-bugs`, `grill-with-docs`, `implement`, `improve-codebase-architecture`, `research`, `tdd`, `triage`, `to-spec`, and `wayfinder` after independent 5/5 controls showed no behavior gap.
 - Retained and rewrote `domain-modeling`: the historical no-skill control stayed architecture-neutral only 3/5, while an earlier compact Codex-native candidate passed 5/5.

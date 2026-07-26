@@ -16,11 +16,11 @@ These checks validate structure and packaging, not stochastic workflow behavior.
 
 ## Current-source status — July 26, 2026
 
-Ten skill prompts were rewritten on July 23. Their historical five-run campaigns exercised earlier wording, so none of those results validates the current prompt source. All ten rewritten prompts remain pending complete representative re-evaluation.
+Ten skill prompts were rewritten on July 23. Their historical five-run campaigns exercised earlier wording, so none of those results validates the current prompt source. All ten rewritten prompts remain pending complete representative re-evaluation, although two now have the directional exact-current-source paired probes recorded below.
 
 The new `codegraph-usage` skill has no historical campaign. Its exact prompt remains pending complete representative re-evaluation.
 
-### July 26 paired Sequelize probes
+### Initial July 26 paired Sequelize probes
 
 One isolated skill run and one no-skill control per workflow used Codex CLI `0.146.0-alpha.3.1`, `gpt-5.6-sol`, and `model_reasoning_effort=max`. Each pair received the same task and an offline temporary copy of a large mixed JavaScript/TypeScript Sequelize snapshot. Candidate copies added only the tested skill. Every final answer and resulting patch was inspected. With one run per arm, these are directional spot checks, not variance-controlled campaigns.
 
@@ -30,10 +30,31 @@ One isolated skill run and one no-skill control per workflow used Codex CLI `0.1
 | `ponytail` | Correct `importModels` fix in 3 files and 55 inserted lines | Correct fix in 4 files and 81 inserted lines | Modest scope and output-efficiency signal. The unchanged tested prompt is exact current source. |
 | `full-code-review` | 5/6 verified regressions, no false positives; 4,112,849 input and 21,040 output tokens | 6/6, no false positives; 4,714,900 input and 31,279 output tokens | The pre-update skill used fewer tokens in this run but missed a composite-key caller regression and announced parallel lanes without a successful receiver. The prompt was rewritten to require changed-behavior → caller → contract → test tracing and truthful conditional delegation; current source is pending fresh evaluation. |
 | `test-driven-development` | Correct `importModels` fix with authentic RED before production and subsequent GREEN; final response did not give the actual RED/GREEN commands and decisive results | Correct fix, but no RED evidence | Confirms the process benefit while exposing a handoff gap. The prompt was amended to require command-and-result evidence in the final response; current source is pending fresh evaluation. |
+| `receiving-code-review` | 20/20: all six comments correctly classified; 473,871 input, 10,503 output, 27 commands, 303 final words | 19/20: the same technical result, but accepted a conditionally safe remedy instead of marking it partially valid; 126,498 input, 7,127 output, 5 commands, 263 words | The tested 484-word source improved one disposition but explored disproportionately. It was compressed to the distinctive classification and authority rules, then freshly evaluated below. |
+| `ponytail-review` | 4/4 simplifications, no false positives, required tags; 19/20 task plus 6/6 contract, 746,673 input, 16,723 output, 319 words | 4/4, no false positives, no tags; 20/20 task plus 5/6 contract, 927,540 input, 26,774 output, 375 words | The tested source was efficient but counted tests that resolved through a stale compiled parent. A compact changed-source provenance rule was added and freshly evaluated below. |
 
-The exact tested skill SHA-256 values were `2c044b346ad12372fa11f334ab9ac6b394ee86c08f3e2faadc686a9f8c9de219` (now-removed `caveman`), `8e6c2bd6709f693e072e6269f4a2c4c2b90e7bd45a076070915556cb42d9de83` (`ponytail`), `12050073dd413c0149bd102989a377d4d9292756363a8accce8657bb269f4d86` (pre-update `full-code-review`), and `40592d5deee3559baa30544aaadb9ae1293a0fc6ca3a7a7af873a1beca316949` (pre-update `test-driven-development`).
+The exact tested skill SHA-256 values were `2c044b346ad12372fa11f334ab9ac6b394ee86c08f3e2faadc686a9f8c9de219` (now-removed `caveman`), `8e6c2bd6709f693e072e6269f4a2c4c2b90e7bd45a076070915556cb42d9de83` (`ponytail`), `12050073dd413c0149bd102989a377d4d9292756363a8accce8657bb269f4d86` (pre-update `full-code-review`), `40592d5deee3559baa30544aaadb9ae1293a0fc6ca3a7a7af873a1beca316949` (pre-update `test-driven-development`), `2798be5c0686d685ffc70287d3f25f81998c537555dac04d60d976052a8b77aa` (pre-compression `receiving-code-review`), and `932cecaff9f2f478b684e6179e0bd3d0f3847cab4b9158549a5cc64327e139b4` (pre-provenance `ponytail-review`).
 
-Fresh isolated post-update fixtures were prepared for the two rewritten prompts, but the Codex runs never reached the model: the sandbox could not write the Codex state database and the required external-execution authorization was denied. Empty launch artifacts are not counted as behavior evidence. Local validation therefore covers their structure, metadata, word budgets, policy invariants, and packaging only.
+### Fresh final-source reruns
+
+Fresh isolated runs reused the frozen prompts, rubrics, and product commits. Candidate and control product trees and `HEAD^..HEAD` diffs were identical; only the candidate contained an ignored local skill. The model sandbox was read-only, candidate events showed the exact skill load, and every repository ended at the original clean Git state.
+
+| Measure | `receiving-code-review` | Receiving control | `ponytail-review` | Ponytail control |
+|---|---:|---:|---:|---:|
+| Score | 20/20 | 19/20 | 26/26 | 25/26 |
+| Input tokens | 466,695 | 293,597 | 1,153,372 | 1,196,819 |
+| Output tokens | 13,585 | 7,323 | 16,810 | 20,290 |
+| Reasoning tokens | 9,993 | 4,684 | 9,993 | 11,857 |
+| Completed commands | 13 | 11 | 20 | 52 |
+| Failed commands | 0 | 0 | 4 | 6 |
+| Final-answer words | 305 | 308 | 307 | 418 |
+| Elapsed seconds | 371 | 204 | 399 | 534 |
+
+The final Receiving source is 320 words with SHA-256 `6ec1bec93c96adf41250b72d57aa69d7b321970da8001d15cc5c9f39c7b48905`. It preserved the full score and corrected the control's conditionally unsafe remedy label, but still cost 1.59× the control's total input and 1.82× its elapsed time. A first 284-word rewrite, SHA-256 `04f1770e7b7906322308d85c4154eb686812491fa673254b2dadd41546e686c3`, failed the frozen 19/20 acceptance bar by mishandling a prerequisite and inferring replacement semantics from only one layer; it was not retained.
+
+The final Ponytail Review source is 469 words with SHA-256 `c85d6a579a98826d976cdc2535724cc28bed854544d3baf4bb9e1353be9d19d8`. Both arms found all four simplifications without false positives and disclosed that focused Mocha tests resolved through stale `packages/core/lib`; both supplemented them with direct current-source checks. The skill uniquely satisfied the supported-tag contract and used 4% less total input, 17% less output, 62% fewer commands, 27% fewer final words, and 25% less elapsed time.
+
+Receiving used product range `e93cf06e2bd71d599d86741411c3a1a9079ebcfb..119c9d0b9b65258eb59b4194ebe36e833863bec3` with product-diff SHA-256 `b4022a361a7e37522f20934dfdb6069db014fc443e378f0eb127a71c289d6ac1`. Ponytail Review used `f0cea95e38b4f2c9096267371ab305d08f7b8497..f466834b217d5de27c1a75a2d09ebc64f97fbad5` with product-diff SHA-256 `70aa19a507032dc4ff5b3ec6ab890799d15dae092e58ad811deacc65ee34c9ee`. One run per arm remains directional evidence, not a complete representative campaign.
 
 ### Earlier current-source probes
 
@@ -58,7 +79,7 @@ The Superpowers repository's own `AGENTS.md` is development guidance and is inte
 
 The proposed `AGENTS.md` rule was not an arm of these evaluations. It is a lower-overhead replacement surface pending matched checks, not a behavior-validated equivalent.
 
-No other current-source live behavior result is claimed here.
+The fresh final-source table contains the only additional exact-current-source paired results claimed here.
 
 ## Historical evaluation method and archive
 
