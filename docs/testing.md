@@ -14,13 +14,30 @@
 
 These checks validate structure and packaging, not stochastic workflow behavior.
 
-## Current-source status — July 23, 2026
+## Current-source status — July 26, 2026
 
 Ten skill prompts were rewritten on July 23. Their historical five-run campaigns exercised earlier wording, so none of those results validates the current prompt source. All ten rewritten prompts remain pending complete representative re-evaluation.
 
 The new `codegraph-usage` skill has no historical campaign. Its exact prompt remains pending complete representative re-evaluation.
 
-Only these July 23 live probes have been performed:
+### July 26 paired Sequelize probes
+
+One isolated skill run and one no-skill control per workflow used Codex CLI `0.146.0-alpha.3.1`, `gpt-5.6-sol`, and `model_reasoning_effort=max`. Each pair received the same task and an offline temporary copy of a large mixed JavaScript/TypeScript Sequelize snapshot. Candidate copies added only the tested skill. Every final answer and resulting patch was inspected. With one run per arm, these are directional spot checks, not variance-controlled campaigns.
+
+| Skill | Skill result | No-skill control | Decision and current status |
+|---|---|---|---|
+| `caveman` | Correct AsyncQueue call-path explanation, 161 words | Same correct result, 188 words | No behavior gap; retain as a product preference. The unchanged tested prompt is exact current source. |
+| `ponytail` | Correct `importModels` fix in 3 files and 55 inserted lines | Correct fix in 4 files and 81 inserted lines | Modest scope and output-efficiency signal. The unchanged tested prompt is exact current source. |
+| `full-code-review` | 5/6 verified regressions, no false positives; 4,112,849 input and 21,040 output tokens | 6/6, no false positives; 4,714,900 input and 31,279 output tokens | The pre-update skill used fewer tokens in this run but missed a composite-key caller regression and announced parallel lanes without a successful receiver. The prompt was rewritten to require changed-behavior → caller → contract → test tracing and truthful conditional delegation; current source is pending fresh evaluation. |
+| `test-driven-development` | Correct `importModels` fix with authentic RED before production and subsequent GREEN; final response did not give the actual RED/GREEN commands and decisive results | Correct fix, but no RED evidence | Confirms the process benefit while exposing a handoff gap. The prompt was amended to require command-and-result evidence in the final response; current source is pending fresh evaluation. |
+
+The exact tested skill SHA-256 values were `2c044b346ad12372fa11f334ab9ac6b394ee86c08f3e2faadc686a9f8c9de219` (`caveman`), `8e6c2bd6709f693e072e6269f4a2c4c2b90e7bd45a076070915556cb42d9de83` (`ponytail`), `12050073dd413c0149bd102989a377d4d9292756363a8accce8657bb269f4d86` (pre-update `full-code-review`), and `40592d5deee3559baa30544aaadb9ae1293a0fc6ca3a7a7af873a1beca316949` (pre-update `test-driven-development`).
+
+Fresh isolated post-update fixtures were prepared for the two rewritten prompts, but the Codex runs never reached the model: the sandbox could not write the Codex state database and the required external-execution authorization was denied. Empty launch artifacts are not counted as behavior evidence. Local validation therefore covers their structure, metadata, word budgets, policy invariants, and packaging only.
+
+### Earlier current-source probes
+
+The July 23 live probes were:
 
 - A one-turn GPT-5.6 Sol `xhigh` `grilling` probe discovered the skill, recommended rejecting indefinite caching, asked exactly one decision question, and stopped without implementing.
 - A clean-context `domain-modeling` forward test separated Product Account, Billing Account, and Login Identity; separated renewal, access, and data lifecycle actions; identified fact owners; and left API versus events open. A cross-workflow output-contract clarification was added afterward, so the run is not validation of the exact final prompt text.
@@ -29,13 +46,13 @@ Only these July 23 live probes have been performed:
 - A GPT-5.6 Sol `xhigh` `full-code-review` probe selected the skill and exercised its read-only self-review workflow. It exposed an all-files wording gap that was corrected afterward, so it is not validation of the exact final prompt text.
 - Three isolated Codex CLI `0.145.0-alpha.30` probes exercised the exact `codegraph-usage` prompt against CodeGraph `1.5.0` and a temporary 16-file indexed copy. An implicit GPT-5.6 Sol `xhigh` request beginning “Using CodeGraph” selected the skill; explicit `xhigh` and `max` requests selected it as well. Every run discovered the deferred `codegraph_explore` MCP tool, used it first, stayed read-only, made at most one narrower graph follow-up, and used native reads only after CodeGraph reported trimmed source or for unindexed Bash, JSON, and Markdown. The final answers cited exact lines and stated evidence limits. These are one-run spot checks without a no-skill control on a small repository; they do not cover stale-index, wrong-worktree, no-index, CLI-fallback, or edit workflows and are not a complete representative campaign.
 
-`caveman` was unchanged on July 23. Its existing three source-matched fresh-context checks remain applicable: a two-sentence hash-table explanation, a safety-complete PostgreSQL recovery answer under 55 words, and a detailed merge-sort explanation when depth was explicitly requested. It has not received a complete five-run skill campaign.
+`caveman` was unchanged on July 23 and July 26. Its existing three source-matched fresh-context checks remain applicable: a two-sentence hash-table explanation, a safety-complete PostgreSQL recovery answer under 55 words, and a detailed merge-sort explanation when depth was explicitly requested. The July 26 Sequelize pair adds one exact-current-source brevity comparison. It has not received a complete five-run skill campaign.
 
-No other current-source live behavior result is claimed here. Local checks cover the rewritten skills' structure, metadata, word budgets, policy invariants, and packaging only.
+No other current-source live behavior result is claimed here.
 
 ## Historical evaluation method and archive
 
-Everything below records the design evidence that led to the retained surface. Except for the unchanged `caveman` checks described above, it is an archive of earlier prompt revisions—not validation of the July 23 source.
+Everything below records the design evidence that led to the retained surface. Except for the unchanged current-source checks identified above, it is an archive of earlier prompt revisions—not validation of the July 26 source.
 
 Behavior changes used isolated Codex contexts. Earlier campaigns used fresh-context subagents. After the collaboration thread limit was reached during the grilling campaign, isolated `codex exec --ephemeral` tasks were used for three baseline runs and all candidate, composition, and native-discovery runs. Each control or candidate wording ran five times on the same representative pressure scenario. Every response was read manually. A behavior was removed when the no-skill control was stable 5/5; a skill was retained only when the control failed or Codex needed an applicable instruction to authorize the workflow.
 

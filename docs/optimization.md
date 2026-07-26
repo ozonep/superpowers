@@ -32,7 +32,16 @@ Higher reasoning does not justify longer prompts. At elevated effort, keep the d
 
 Ten skill prompts were rewritten on July 23, 2026. Historical five-run campaigns explain why those skills and constraints exist, but they exercised earlier prompt revisions and do not validate the current source. All ten rewritten prompts remain pending complete representative re-evaluation.
 
-July 23 live checks are limited to:
+On July 26, one paired skill/control probe per workflow used Codex CLI `0.146.0-alpha.3.1`, GPT-5.6 Sol, and `max` effort on isolated Sequelize fixtures:
+
+- `caveman` and its control were equally correct; the unchanged skill answer used 161 words versus 188;
+- `ponytail` and its control produced correct fixes; the unchanged skill used three changed files and 55 insertions versus four files and 81 insertions;
+- the pre-update `full-code-review` found five of six verified regressions without false positives, while the control found six of six; and
+- the pre-update `test-driven-development` produced authentic RED/GREEN while the control did not, but omitted decisive command-and-result evidence from its final response.
+
+The latter two prompts were rewritten after those runs, so the results are design evidence rather than validation of current source. Fresh post-update launches were blocked before model execution by the Codex state database sandbox and denied external-execution authorization. All four comparisons are one run per arm and are not complete representative campaigns.
+
+Earlier live checks are limited to:
 
 - one GPT-5.6 Sol `xhigh` turn in which `grilling` was discovered, made a recommendation, asked exactly one decision question, and stopped;
 - one clean-context `domain-modeling` forward test that separated overloaded concepts and ownership while leaving the integration mechanism open; a cross-workflow output-contract clarification was added afterward, so the run does not validate the exact final prompt text;
@@ -63,6 +72,8 @@ July 23 live checks are limited to:
 - Rejected `grill-me-with-docs` and `grill-me` after the retained skills composed and triggered natively in 5/5 controls without either wrapper.
 - Rejected `documentation` and `typescript-magician` after GPT-5.6 Sol controls passed 5/5 without either candidate.
 - Retained and rewrote the explicitly required `full-code-review` candidate: the current compact workflow infers safe review scope, continues without a formal spec, uses parallel read-only lenses only when worthwhile, verifies candidate findings, and emits one prioritized report. Its earlier five-run campaign belongs to a previous prompt revision.
+- Tightened `full-code-review` after the July 26 pair to trace every changed behavior through callers, boundary contracts, conversions, and tests, and to claim delegation only after a successful call.
+- Tightened `test-driven-development` after the July 26 pair to require authentic RED/GREEN command-and-result evidence in the final handoff.
 - Capped starter prompts at Codex's three-entry runtime limit and added a regression assertion after live discovery runs exposed the ignored fourth prompt.
 
 ## Sources

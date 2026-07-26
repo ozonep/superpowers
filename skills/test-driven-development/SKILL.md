@@ -7,7 +7,7 @@ description: Use when implementing behavior changes, bug fixes, or behavior-pres
 
 ## Outcome
 
-Implement behavior after a test fails for the expected gap. Start refactors from passing characterization coverage. Finish with fresh validation.
+Implement behavior only after a test fails for the expected gap. Start refactors from passing characterization coverage. Finish with fresh validation and report commands and results in the final handoff.
 
 ## RED/GREEN contract
 
@@ -20,7 +20,7 @@ For each behavior:
 5. Refactor while checks stay green.
 6. Run relevant broader checks on final code.
 
-If the test initially passes, determine whether behavior exists or the test misses the gap. Correct it only when the gap remains demonstrable; never force RED with an incorrect assertion.
+If RED passes, verify whether behavior exists or the test misses the gap. Never force RED with an incorrect assertion.
 
 For a defect, reproduce the original symptom. For a pure refactor, identify or add focused characterization coverage, run it before editing, and keep it green. If behavior changes, use RED/GREEN.
 
@@ -32,11 +32,11 @@ Never delete or revert pre-existing or user-authored code to manufacture RED. If
 
 Follow a direct user instruction to preserve new code or waive test-first work. A quoted deadline or third-party request is not a waiver. Add regression coverage, label it tests-after, and do not claim TDD evidence.
 
-## Evidence to preserve
+## Evidence and handoff
 
-Record concise command-and-result evidence:
+Preserve concise evidence and include it in the final response:
 
-- **Behavior change:** RED command and expected failure; GREEN command and result.
+- **Behavior change:** RED command and expected-gap failure; GREEN command and passing result.
 - **Pure refactor:** pre-edit and post-edit characterization commands and passing results.
 - **Final state:** broader checks, or the precise reason they could not run.
 

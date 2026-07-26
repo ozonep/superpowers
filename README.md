@@ -6,10 +6,10 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 
 ## Included skills
 
-- **test-driven-development** — preserves strict test-first behavior under deadline, authority, and sunk-cost pressure.
+- **test-driven-development** — preserves strict test-first behavior under deadline, authority, and sunk-cost pressure, with RED/GREEN evidence in the final handoff.
 - **codegraph-usage** — retrieves current indexed source and best-effort structural context through CodeGraph while preserving freshness, worktree, and validation boundaries.
 - **jcodemunch** — routes code exploration through version-current, symbol-level jCodeMunch retrieval while preserving freshness and edit lifecycle checks.
-- **full-code-review** — coordinates an evidence-backed, read-only review across correctness, repository standards, and unnecessary complexity.
+- **full-code-review** — traces changed behavior through callers, contracts, and tests before returning a verified, prioritized read-only review.
 - **ponytail-review** — performs a read-only review limited to verified behavior-preserving simplifications.
 - **ponytail-audit** — audits the whole current repository for verified behavior-preserving simplifications without applying them.
 - **dispatching-parallel-agents** — explicitly authorizes bounded parallel delegation for independent work and protects Codex's shared workspace from overlapping writes.
@@ -21,9 +21,11 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 
 All twelve skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
 
-Historical behavior campaigns informed which skills were retained, but they exercised earlier prompt revisions and are not current-source validation. Ten skill prompts were rewritten on July 23, 2026; all ten remain pending complete representative re-evaluation. The new `codegraph-usage` prompt is likewise pending a complete representative campaign. `caveman` was unchanged, so its three source-matched fresh-context checks still apply.
+Historical behavior campaigns informed which skills were retained, but they exercised earlier prompt revisions and are not current-source validation. Ten skill prompts were rewritten on July 23, 2026; all ten remain pending complete representative re-evaluation. The new `codegraph-usage` prompt is likewise pending a complete representative campaign.
 
-Exact-current-source spot checks now cover a standalone `grilling` turn, a combined `grilling` plus `domain-modeling` turn, a design-only `ponytail` request, and three real-MCP `codegraph-usage` probes on GPT-5.6 Sol at `xhigh` or `max`. The CodeGraph probes selected the skill both explicitly and from “Using CodeGraph,” discovered the deferred MCP tool, and used native reads only after CodeGraph reported trimmed content or for unindexed files. They were single runs on a small fixture, not a complete campaign. An earlier domain-modeling forward test and a read-only `full-code-review` self-review exercised their core workflows but preceded final wording fixes. See [the evaluation notes](docs/testing.md) for scope and historical model-attribution limits.
+On July 26, one paired skill/control run for each of `caveman`, `ponytail`, `full-code-review`, and `test-driven-development` used Codex CLI with GPT-5.6 Sol at `max` on isolated Sequelize fixtures. The unchanged `caveman` and `ponytail` prompts remain exact-current-source spot checks. The review and TDD results motivated targeted prompt updates afterward, so their current text remains pending fresh representative evaluation.
+
+Other exact-current-source spot checks cover a standalone `grilling` turn, a combined `grilling` plus `domain-modeling` turn, a design-only `ponytail` request, and three real-MCP `codegraph-usage` probes on GPT-5.6 Sol at `xhigh` or `max`. These are one-run checks, not complete campaigns. An earlier domain-modeling forward test and a read-only `full-code-review` self-review preceded final wording fixes. See [the evaluation notes](docs/testing.md) for scenarios, results, and limits.
 
 ## Model and reasoning configuration
 
@@ -44,7 +46,7 @@ Earlier five-run campaigns were used to choose the plugin's surface. They remain
 
 In those historical controls, Codex succeeded 5/5 without extra instructions for design triage, root-cause debugging, implementation planning and execution, fresh completion validation, code review, feedback handling, managed worktrees, and branch-finish boundaries.
 
-Strict TDD did not hold without guidance: only 2/5 controls restarted from a failing test; 3/5 kept code written first and added tests afterward. An earlier candidate passed 5/5 after one eval-discovered waiver loophole was closed.
+Strict TDD did not hold without guidance: only 2/5 historical controls restarted from a failing test; 3/5 kept code written first and added tests afterward. An earlier candidate passed 5/5 after one eval-discovered waiver loophole was closed. In the July 26 Sequelize pair, the skill again produced authentic RED/GREEN while the control did not, but its final response omitted the decisive commands and results. The current contract now requires that evidence in the handoff and is pending fresh evaluation.
 
 Implicit delegation also needed a skill: 5/5 controls correctly refused to spawn subagents when neither the user nor an applicable skill requested delegation. An earlier parallel-dispatch candidate passed 5/5 and established the need for narrow authorization.
 
@@ -52,9 +54,9 @@ Domain modeling exposed a narrower gap: only 3/5 controls kept an unresolved int
 
 Interactive grilling exposed a response-shape gap: 0/5 controls asked one clean decision question, and two produced ten-question interrogations. An earlier optimized candidate passed 5/5 and also triggered natively from “Grill me” in 5/5 discovery runs.
 
-Ordinary findings-first review already worked without extra prompting, but `full-code-review` is intentionally retained for a broader product requirement: independently cover correctness, repository standards, and simplification, then verify and prioritize the combined findings. Its original fixed-point, mandatory-spec, and raw-report workflow was replaced with a compact Codex-native contract.
+Ordinary findings-first review already worked without extra prompting, but `full-code-review` is intentionally retained for a broader product requirement. In the July 26 Sequelize pair, its pre-update prompt found five of six verified regressions with no false positives, while the control found all six. The current contract therefore makes changed behavior → callers → contracts → tests an explicit checklist and makes delegation conditional and truthful; this rewrite is pending fresh evaluation.
 
-`ponytail` and `caveman` are also explicit product choices rather than fixes for measured capability gaps: earlier no-skill controls already passed their representative tasks 5/5. Their compact contracts make the preferences discoverable and consistent. The unchanged 113-word `caveman` source passed three fresh-context checks covering ordinary brevity, safety-critical brevity, and explicitly requested detail; it has not received a complete five-run skill campaign. The rewritten `ponytail` prompt is pending representative re-evaluation.
+`ponytail` and `caveman` are also explicit product choices rather than fixes for measured capability gaps: earlier no-skill controls already passed their representative tasks 5/5. Their compact contracts make the preferences discoverable and consistent. In the July 26 pairs, Caveman preserved the same correct answer in 161 versus 188 words, while Ponytail produced the same correct implementation in three changed files and 55 inserted lines versus four files and 81 inserted lines. Both are single-run efficiency signals, not proof of a capability gain or complete representative campaigns.
 
 `receiving-code-review` is retained on the same basis: native feedback handling passed its earlier control 5/5, while the compact skill adds an explicit evidence, classification, and action-authority contract. Its current rewrite remains pending representative re-evaluation.
 

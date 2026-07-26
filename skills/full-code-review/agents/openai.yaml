@@ -1,4 +1,4 @@
 interface:
   display_name: "Full Code Review"
-  short_description: "Review changes across correctness, standards, and simplicity"
-  default_prompt: "Use $full-code-review to perform a read-only review for verified correctness, standards, and simplicity findings."
+  short_description: "Trace changes through callers, contracts, and tests"
+  default_prompt: "Use $full-code-review to review the requested change read-only, tracing each changed behavior through callers, contracts, and tests before reporting only verified, prioritized findings."

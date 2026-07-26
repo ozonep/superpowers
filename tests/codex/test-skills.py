@@ -483,4 +483,29 @@ for required_term in (
         f"codegraph-usage skill omits {required_term}"
     )
 
+full_review_text = (skills_root / "full-code-review/SKILL.md").read_text(
+    encoding="utf-8"
+)
+for required_term in (
+    "Direct and indirect callers or consumers",
+    "Contracts and conversions at each boundary",
+    "Tests for that path",
+    "Do not claim delegation unless the call succeeds",
+):
+    assert required_term in full_review_text, (
+        f"full-code-review skill omits {required_term}"
+    )
+
+tdd_text = (skills_root / "test-driven-development/SKILL.md").read_text(
+    encoding="utf-8"
+)
+for required_term in (
+    "include it in the final response",
+    "RED command and expected-gap failure",
+    "GREEN command and passing result",
+):
+    assert required_term in tdd_text, (
+        f"test-driven-development skill omits {required_term}"
+    )
+
 print("Codex skill structure looks good")
