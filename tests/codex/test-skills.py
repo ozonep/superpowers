@@ -328,9 +328,10 @@ def _validate_metadata(metadata, skill_name):
         "codegraph-usage": "codegraph",
         "jcodemunch": "jcodemunch",
     }
+    explicit_invocation_skills = {"grilling", "jcodemunch"}
     if skill_name in mcp_dependencies:
         expected_top_level.add("dependencies")
-    if skill_name == "jcodemunch":
+    if skill_name in explicit_invocation_skills:
         expected_top_level.add("policy")
     _assert_exact_mapping(metadata, expected_top_level, skill_name)
 
@@ -369,11 +370,15 @@ def _validate_metadata(metadata, skill_name):
             f"{skill_name} dependency description must be a non-empty string"
         )
 
-    if skill_name == "jcodemunch":
+    if skill_name in explicit_invocation_skills:
         policy = metadata["policy"]
-        _assert_exact_mapping(policy, {"allow_implicit_invocation"}, "jcodemunch.policy")
+        _assert_exact_mapping(
+            policy,
+            {"allow_implicit_invocation"},
+            f"{skill_name}.policy",
+        )
         assert policy["allow_implicit_invocation"] is False, (
-            "jcodemunch must require explicit invocation"
+            f"{skill_name} must require explicit invocation"
         )
 
     return interface
