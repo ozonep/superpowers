@@ -5,7 +5,7 @@
 `tests/codex/run-tests.sh` verifies:
 
 - no foreign runtime entry points remain and `AGENTS.md` is a readable regular file;
-- exactly the eleven retained skills are packaged;
+- exactly the ten retained skills are packaged;
 - skill frontmatter, trigger descriptions, word budgets, model-agnostic prompting, and OpenAI metadata are valid;
 - skill text requests observable evidence rather than private reasoning traces;
 - marketplace and manifest metadata agree, including the three-prompt runtime limit;
@@ -14,11 +14,9 @@
 
 These checks validate structure and packaging, not stochastic workflow behavior.
 
-## Current-source status — July 26, 2026
+## Current-source status — July 27, 2026
 
 Ten skill prompts were rewritten on July 23. Their historical five-run campaigns exercised earlier wording, so none of those results validates the current prompt source. All ten rewritten prompts remain pending complete representative re-evaluation, although two now have the directional exact-current-source paired probes recorded below.
-
-The new `codegraph-usage` skill has no historical campaign. Its exact prompt remains pending complete representative re-evaluation.
 
 ### Initial July 26 paired Sequelize probes
 
@@ -65,7 +63,20 @@ The July 23 live probes were:
 - An exact-current-source GPT-5.6 Sol `xhigh` composition probe selected `grilling` with `domain-modeling`, recommended separating customer organization from login identity, asked exactly one question, produced no glossary, model report, ADR, or implementation, and left HTTP versus events unresolved.
 - An exact-current-source GPT-5.6 Sol `xhigh` design-only `ponytail` probe returned a narrow bounded-cache API and its material concurrency and retention trade-offs without attempting edits.
 - A GPT-5.6 Sol `xhigh` `full-code-review` probe selected the skill and exercised its read-only self-review workflow. It exposed an all-files wording gap that was corrected afterward, so it is not validation of the exact final prompt text.
-- Three isolated Codex CLI `0.145.0-alpha.30` probes exercised the exact `codegraph-usage` prompt against CodeGraph `1.5.0` and a temporary 16-file indexed copy. An implicit GPT-5.6 Sol `xhigh` request beginning “Using CodeGraph” selected the skill; explicit `xhigh` and `max` requests selected it as well. Every run discovered the deferred `codegraph_explore` MCP tool, used it first, stayed read-only, made at most one narrower graph follow-up, and used native reads only after CodeGraph reported trimmed source or for unindexed Bash, JSON, and Markdown. The final answers cited exact lines and stated evidence limits. These are one-run spot checks without a no-skill control on a small repository; they do not cover stale-index, wrong-worktree, no-index, CLI-fallback, or edit workflows and are not a complete representative campaign.
+- Three isolated Codex CLI `0.145.0-alpha.30` probes exercised the now-removed `codegraph-usage` prompt against CodeGraph `1.5.0` and a temporary 16-file indexed copy. An implicit GPT-5.6 Sol `xhigh` request beginning “Using CodeGraph” selected the skill; explicit `xhigh` and `max` requests selected it as well. Every run discovered the deferred `codegraph_explore` MCP tool, used it first, stayed read-only, made at most one narrower graph follow-up, and used native reads only after CodeGraph reported trimmed source or for unindexed Bash, JSON, and Markdown. The final answers cited exact lines and stated evidence limits. These are historical one-run spot checks without a no-skill control on a small repository; they do not validate the replacement rule.
+
+### July 27 global repository-discovery probes
+
+Four isolated read-only tasks used Codex CLI `0.146.0-alpha.3.1`, `gpt-5.6-sol`, `model_reasoning_effort=medium`, and the exact 208-word global `AGENTS.md` rule with SHA-256 `c10ed1e71a23ef441b2daf51f8d14ee16a988046ac9fc0f3a7deb98e2eeead3b`.
+
+| Scenario | Observed route | Result |
+|---|---|---|
+| Locate `PAYMENT_RETRY_LIMIT` | One `fff` `ffgrep` call | Returned the exact definition at `src/services/payment.py:1`; no CodeGraph or native search. |
+| Trace `POST /checkout` to `charge_card` and direct `PaymentService` consumers | One CodeGraph `codegraph_explore` call | Returned the complete path and both direct consumers; no repeated file read or native search. |
+| Exhaustively match a multiline YAML sequence | One native multiline `rg` call | Returned both planted files and starting lines; no indexed lookup. |
+| Locate the identifier with indexed tools absent | One native exact `rg` call | Returned the exact definition without installing, initializing, repairing, or syncing an index. |
+
+The `fff` and CodeGraph MCP surfaces were deterministic read-only mocks modeled on their current public tool descriptions. One run per scenario checks final-rule routing, not stochastic reliability, real index freshness, worktree warnings, fuzzy behavior, tool failures, edit workflows, latency, tokens, or comparative performance. There was no matched control.
 
 `caveman` was unchanged for its three source-matched fresh-context checks and the July 26 pair, but it is no longer packaged. The removed skill produced a two-sentence hash-table explanation, a safety-complete PostgreSQL recovery answer under 55 words, and a detailed merge-sort explanation when depth was requested. Separately, no-skill controls passed the historical 55-word safety task 5/5 and produced the same correct Sequelize explanation in the July 26 pair. The skill's 27-word reduction in that paired answer did not demonstrate enough savings to offset its discovery and activation input.
 
@@ -79,7 +90,7 @@ The Superpowers repository's own `AGENTS.md` is development guidance and is inte
 
 The proposed `AGENTS.md` rule was not an arm of these evaluations. It is a lower-overhead replacement surface pending matched checks, not a behavior-validated equivalent.
 
-The fresh final-source table contains the only additional exact-current-source paired results claimed here.
+The fresh final-source table contains the only additional exact-current-source paired results claimed here. The July 27 repository-discovery probes are unpaired routing evidence.
 
 ## Historical evaluation method and archive
 

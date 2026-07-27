@@ -324,10 +324,7 @@ def _assert_exact_mapping(value, keys, location):
 
 def _validate_metadata(metadata, skill_name):
     expected_top_level = {"interface"}
-    mcp_dependencies = {
-        "codegraph-usage": "codegraph",
-        "jcodemunch": "jcodemunch",
-    }
+    mcp_dependencies = {"jcodemunch": "jcodemunch"}
     explicit_invocation_skills = {"grilling", "jcodemunch"}
     if skill_name in mcp_dependencies:
         expected_top_level.add("dependencies")
@@ -389,7 +386,6 @@ _run_in_file_fixtures()
 root = Path(__file__).resolve().parents[2]
 skills_root = root / "skills"
 expected = {
-    "codegraph-usage",
     "dispatching-parallel-agents",
     "domain-modeling",
     "full-code-review",
@@ -470,22 +466,6 @@ for required_term in (
     "register_edit",
 ):
     assert required_term in jcodemunch_text, f"jcodemunch skill omits {required_term}"
-
-codegraph_text = (skills_root / "codegraph-usage/SKILL.md").read_text(
-    encoding="utf-8"
-)
-for required_term in (
-    "codegraph_explore",
-    "codegraph explore",
-    "projectPath",
-    "codegraph affected",
-    "worktree",
-    "best-effort",
-    "codegraph init",
-):
-    assert required_term in codegraph_text, (
-        f"codegraph-usage skill omits {required_term}"
-    )
 
 full_review_text = (skills_root / "full-code-review/SKILL.md").read_text(
     encoding="utf-8"

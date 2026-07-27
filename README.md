@@ -7,7 +7,6 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 ## Included skills
 
 - **test-driven-development** — preserves strict test-first behavior under deadline, authority, and sunk-cost pressure, with RED/GREEN evidence in the final handoff.
-- **codegraph-usage** — retrieves current indexed source and best-effort structural context through CodeGraph while preserving freshness, worktree, and validation boundaries.
 - **jcodemunch** — routes code exploration through version-current, symbol-level jCodeMunch retrieval while preserving freshness and edit lifecycle checks.
 - **full-code-review** — traces changed behavior through callers, contracts, and tests before returning a verified, prioritized read-only review.
 - **ponytail-review** — performs a read-only review limited to verified behavior-preserving simplifications.
@@ -18,15 +17,15 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 - **ponytail** — applies a simplicity-first decision ladder to coding work without trading away correctness or explicit requirements.
 - **receiving-code-review** — verifies review comments against repository evidence before applying, declining, or escalating them.
 
-All eleven skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
+All ten skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
 
-Historical behavior campaigns informed which skills were retained, but they exercised earlier prompt revisions and are not current-source validation. Ten skill prompts were rewritten on July 23, 2026; all ten remain pending complete representative re-evaluation, although `receiving-code-review` and `ponytail-review` now have directional exact-current-source paired probes. The new `codegraph-usage` prompt is likewise pending a complete representative campaign.
+Historical behavior campaigns informed which skills were retained, but they exercised earlier prompt revisions and are not current-source validation. Ten skill prompts were rewritten on July 23, 2026; all ten remain pending complete representative re-evaluation, although `receiving-code-review` and `ponytail-review` now have directional exact-current-source paired probes.
 
 On July 26, one paired skill/control run for each of `caveman`, `ponytail`, `full-code-review`, and `test-driven-development` used Codex CLI with GPT-5.6 Sol at `max` on isolated Sequelize fixtures. The Caveman result led to its removal, the unchanged `ponytail` prompt remains an exact-current-source spot check, and the review and TDD results motivated targeted prompt updates afterward.
 
 Two later July 26 pairs on frozen Sequelize review fixtures motivated a smaller `receiving-code-review` contract and a validation-provenance rule for `ponytail-review`. Fresh final-source runs then scored 20/20 versus 19/20 for Receiving and 26/26 versus 25/26 for Ponytail Review. Receiving remained costlier than its control; Ponytail Review used fewer total tokens, commands, words, and elapsed time. These are one-run directional checks.
 
-Other exact-current-source spot checks cover a standalone `grilling` turn, a combined `grilling` plus `domain-modeling` turn, a design-only `ponytail` request, and three real-MCP `codegraph-usage` probes on GPT-5.6 Sol at `xhigh` or `max`. These are one-run checks, not complete campaigns. An earlier domain-modeling forward test and a read-only `full-code-review` self-review preceded final wording fixes. See [the evaluation notes](docs/testing.md) for scenarios, results, and limits.
+Other exact-current-source spot checks cover a standalone `grilling` turn, a combined `grilling` plus `domain-modeling` turn, and a design-only `ponytail` request. These are one-run checks, not complete campaigns. An earlier domain-modeling forward test and a read-only `full-code-review` self-review preceded final wording fixes. See [the evaluation notes](docs/testing.md) for scenarios, results, and limits.
 
 ## Model and reasoning configuration
 
@@ -75,7 +74,20 @@ This rule is the lower-overhead replacement surface, not a tested equivalent; ma
 
 `jcodemunch` is an explicit tool-integration skill derived from the upstream server's guide and agent policy. It defers to `jcodemunch_guide` for version-matched instructions, supports both compact and full MCP tool surfaces, and reports a blocker rather than bypassing a required jCodeMunch navigation policy. An earlier root-policy-aligned revision passed a fresh-context unavailable-server blocker check; the current rewrite remains pending representative re-evaluation with the full surface available.
 
-`codegraph-usage` is an explicit tool-integration skill derived from CodeGraph's current MCP instructions, tool definitions, CLI reference, and indexing guidance. It favors the single default `codegraph_explore` surface, supports the CLI equivalent for non-MCP harnesses, distinguishes current source from best-effort relationship evidence, and keeps index mutation under user authority. Its exact prompt remains pending a complete representative evaluation campaign.
+`codegraph-usage` was removed in favor of a durable personal discovery policy. Put this rule in `~/.codex/AGENTS.md` when `fff` and CodeGraph are configured:
+
+```md
+## Repository discovery
+
+- When available, current, and scoped to this repository and worktree, prefer indexed tools to repeated broad shell searches. Do not run index installation, initialization, repair, or sync commands unless the user asks.
+- Use `fff` for file/path and exact, identifier, or fuzzy content lookup. Use CodeGraph `codegraph_explore` for architecture or execution flow, symbol relationships, callers/callees, imports, routes, inheritance, and change impact. “Where is X?” → `fff`; “How is X connected or what depends on it?” → CodeGraph.
+- Start with one focused indexed query. For one material gap, follow up with `fff` for path/text or CodeGraph for relationships; then use the narrowest native fallback. Use native tools directly when an index is unavailable, stale, or unsuitable; for ignored, unindexed, or out-of-repository files; for multiline or advanced regex; and for exact exhaustive verification before a consequential change.
+- Do not redo a successful indexed lookup with broad `rg`, `grep`, or `find`. Treat fresh line-numbered CodeGraph source as already read; inspect only omitted, truncated, or stale target code before editing.
+- Treat graph relationships and impact as best-effort; missing edges are not proof of no dependency. Validate changes with normal repository checks.
+- Repository and directory `AGENTS.md` files override these defaults where they are more specific.
+```
+
+This preserves the skill's distinctive routing, freshness, evidence, and index-authority boundaries in a durable personal default. Because global guidance is loaded on every run while skill bodies use progressive disclosure, the replacement is simpler operationally but not inherently lower-token. Four isolated GPT-5.6 Sol `medium` probes selected one-call `fff`, one-call CodeGraph, native multiline search, and native unavailable-tool fallback as intended. They used deterministic mock MCP tools and one run per scenario, so real-server matched evaluation remains pending; the prior three real-MCP probes validate the removed skill, not this rule.
 
 Five GPT-5.6 Sol controls found the original `ponytail-review` draft redundant with `ponytail` and `full-code-review`. It is retained as a deliberate focused entry point: the optimized contract is read-only and simplification-only, and removes unsafe examples, guessed line-saving scores, and unsupported persistent-mode behavior. An earlier compressed revision passed five matched `max`-effort runs: every run selected only the focused skill, preserved the staged scope and read-only boundary, and returned evidence-backed simplifications without aggregate estimates.
 

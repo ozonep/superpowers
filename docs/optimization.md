@@ -53,6 +53,8 @@ Earlier live checks are limited to:
 
 `caveman` was not changed in the July 23 rewrite, but it was removed after the July 26 pair found no measured capability gap and no demonstrated net-token gain. Its earlier source-matched checks remain historical evidence for that removal decision.
 
+On July 27, four read-only Codex CLI `0.146.0-alpha.3.1` probes exercised the exact 208-word global repository-discovery rule with GPT-5.6 Sol at `medium`. Identifier lookup used one `fff` call, architecture tracing used one CodeGraph call, exhaustive multiline matching used one native `rg`, and an unavailable-indexed-tools case used one native `rg` without installation or initialization. The MCP tools were deterministic mocks and each scenario ran once, so this is directional routing evidence rather than a real-server or matched performance result.
+
 ## Structural changes
 
 - Removed every non-Codex manifest, bootstrap hook, adapter, test suite, and installation guide.
@@ -61,13 +63,14 @@ Earlier live checks are limited to:
 - Replaced the broken legacy `AGENTS.md` symlink with a readable Codex-native repository guide and a regression check.
 - Checked `agents/openai.yaml` into each skill instead of copying metadata from an older package.
 - Made dirty development packaging consume the current working tree.
-- Reduced the original runtime to eleven focused Codex skills.
+- Reduced the original runtime to ten focused Codex skills.
 - Rejected the later `lean-code` and `reviewing-plans` candidates after every no-skill control passed 5/5.
 - Retained `ponytail` as an explicit product preference despite its earlier no-skill controls passing 5/5; its current prompt has one exact-source paired probe but remains pending representative behavior evaluation.
 - Removed `caveman`: controls were already correct, and its modest final-answer reduction did not demonstrate enough savings to justify skill discovery and activation overhead. Prefer `Default final responses to the shortest complete answer; expand only for requested detail, correctness, safety, evidence, or completion.` in the user's global or target repository `AGENTS.md`.
 - Treat that `AGENTS.md` rule as an untested lower-overhead replacement surface until it passes matched brevity, safety, requested-depth, and evidence-heavy handoff checks.
 - Retained `receiving-code-review` as a narrow correctness and authority contract despite the earlier review-feedback control passing 5/5. Compressed it from 484 to 320 words around per-comment disposition, concern/remedy and prerequisite separation, complete-claim evidence, and action boundaries. The fresh score stayed 20/20 versus 19/20 and the command gap narrowed to 13 versus 11, but the skill remained more token- and time-intensive, so no cost-efficiency claim is made.
 - Added `jcodemunch` as an explicit Codex-native tool adapter; it delegates version-sensitive policy to the server's self-guide and keeps only compact routing, evidence, freshness, and reindexing invariants locally.
+- Removed `codegraph-usage` in favor of a lean global `AGENTS.md` routing rule for `fff`, CodeGraph, and native fallback. The replacement preserves freshness, worktree, best-effort relationship, validation, and index-authority boundaries. Global guidance is simpler operationally but always loaded, so it is not inherently lower-token than a progressively disclosed skill; four mock-tool routing probes passed, while real-server matched evaluation remains pending.
 - Retained `ponytail-review` as an explicit focused-review entry point despite five GPT-5.6 Sol controls finding the original draft redundant. Added a compact rule that validation must exercise the reviewed revision or disclose stale, prebuilt, or unknown provenance. In the fresh final-source pair, both arms handled the stale-output gap correctly; the skill scored one contract point higher and used less total input, output, commands, words, and elapsed time.
 - Added `ponytail-audit` as the repository-wide counterpart to `ponytail-review`; an earlier optimized revision narrowed implicit triggering to simplification-only audits, verified use and replacement semantics, reported coverage gaps, and removed guessed aggregate savings and unsupported persistent-mode instructions. Five matched GPT-5.6 Sol implicit-discovery runs against that earlier revision selected it 5/5 and preserved all planted findings while producing reports 23% shorter on average than five no-skill controls.
 - Rejected `code-review`, `diagnosing-bugs`, `grill-with-docs`, `implement`, `improve-codebase-architecture`, `research`, `tdd`, `triage`, `to-spec`, and `wayfinder` after independent 5/5 controls showed no behavior gap.
