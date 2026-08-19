@@ -2,3 +2,6 @@ interface:
   display_name: "Unslop"
   short_description: "Remove generic AI tells without changing meaning"
   default_prompt: "Use $unslop to rewrite this prose so it sounds specific and natural while preserving every supported claim and the intended voice."
+
+policy:
+  allow_implicit_invocation: false

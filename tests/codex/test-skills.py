@@ -325,7 +325,7 @@ def _assert_exact_mapping(value, keys, location):
 def _validate_metadata(metadata, skill_name):
     expected_top_level = {"interface"}
     mcp_dependencies = {"jcodemunch": "jcodemunch"}
-    explicit_invocation_skills = {"grilling", "jcodemunch"}
+    explicit_invocation_skills = {"grilling", "jcodemunch", "unslop"}
     if skill_name in mcp_dependencies:
         expected_top_level.add("dependencies")
     if skill_name in explicit_invocation_skills:
