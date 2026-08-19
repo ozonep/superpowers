@@ -32,6 +32,8 @@ Higher reasoning does not justify longer prompts. At elevated effort, keep the d
 
 Ten skill prompts were rewritten on July 23, 2026. Historical five-run campaigns explain why those skills and constraints exist, but they exercised earlier prompt revisions and do not validate the current source. All ten rewritten prompts remain pending complete representative re-evaluation, although `receiving-code-review` and `ponytail-review` now have one directional exact-current-source paired probe each.
 
+The `unslop` and `typescript-best-practices` additions received one exact-current-source implicit-discovery probe each on August 19 with GPT-5.6 Sol: `unslop` at `xhigh` preserved every supplied fact, number, quotation, condition, and caveat while removing unsupported promotional copy; the TypeScript skill at `max` found and reproduced all three planted boundary and modeling failures while staying read-only. These unpaired synthetic runs validate only those task shapes, not general reliability or efficiency.
+
 On July 26, one paired skill/control probe per workflow used Codex CLI `0.146.0-alpha.3.1`, GPT-5.6 Sol, and `max` effort on isolated Sequelize fixtures:
 
 - the now-removed `caveman` and its control were equally correct; the skill answer used 161 words versus 188, but its discovery and activation input did not establish net efficiency;
@@ -63,7 +65,9 @@ On July 27, four read-only Codex CLI `0.146.0-alpha.3.1` probes exercised the ex
 - Replaced the broken legacy `AGENTS.md` symlink with a readable Codex-native repository guide and a regression check.
 - Checked `agents/openai.yaml` into each skill instead of copying metadata from an older package.
 - Made dirty development packaging consume the current working tree.
-- Reduced the original runtime to ten focused Codex skills.
+- Reduced the original runtime to ten focused Codex skills before adding the two narrowly triggered skills below.
+- Added `typescript-best-practices` as a scoped type-design and boundary contract with a conditionally loaded patterns reference; removed dangling dependencies, unsafe absolutes, and non-TypeScript testing and telemetry policy.
+- Added `unslop` as a faithful prose-revision contract; replaced universal activation, word and punctuation bans, and invented-personality instructions with explicit trigger, evidence, authority, and stop boundaries.
 - Rejected the later `lean-code` and `reviewing-plans` candidates after every no-skill control passed 5/5.
 - Retained `ponytail` as an explicit product preference despite its earlier no-skill controls passing 5/5; its current prompt has one exact-source paired probe but remains pending representative behavior evaluation.
 - Removed `caveman`: controls were already correct, and its modest final-answer reduction did not demonstrate enough savings to justify skill discovery and activation overhead. Prefer `Default final responses to the shortest complete answer; expand only for requested detail, correctness, safety, evidence, or completion.` in the user's global or target repository `AGENTS.md`.

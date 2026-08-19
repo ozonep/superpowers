@@ -396,6 +396,8 @@ expected = {
     "ponytail-review",
     "receiving-code-review",
     "test-driven-development",
+    "typescript-best-practices",
+    "unslop",
 }
 
 skill_files = sorted(skills_root.glob("*/SKILL.md"))
@@ -452,6 +454,21 @@ for skill_file in skill_files:
     assert words <= 500, f"{skill_file} is {words} words; limit is 500"
 
     allowed = {skill_file, metadata_path}
+    for raw_target in re.findall(r"\]\(([^)]+)\)", body):
+        target = raw_target.split("#", 1)[0]
+        if not target or "://" in target or target.startswith(("/", "mailto:")):
+            continue
+        resource_path = skill_file.parent / target
+        try:
+            resource_path.resolve().relative_to(skill_file.parent.resolve())
+        except ValueError:
+            raise AssertionError(
+                f"skill reference escapes its package: {skill_file} -> {target}"
+            )
+        assert resource_path.is_file(), (
+            f"missing linked skill resource: {skill_file} -> {target}"
+        )
+        allowed.add(resource_path)
     extras = {path for path in skill_file.parent.rglob("*") if path.is_file()} - allowed
     assert not extras, f"unreferenced runtime files in {skill_file.parent}: {sorted(extras)}"
 

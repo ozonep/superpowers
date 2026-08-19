@@ -16,10 +16,12 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 - **grilling** — stress-tests a plan interactively with one evidence-backed decision question per turn.
 - **ponytail** — applies a simplicity-first decision ladder to coding work without trading away correctness or explicit requirements.
 - **receiving-code-review** — verifies review comments against repository evidence before applying, declining, or escalating them.
+- **typescript-best-practices** — strengthens TypeScript at real invariants and trust boundaries without forcing broad rewrites or unsafe assertions.
+- **unslop** — reviews or rewrites prose to remove generic AI mannerisms while preserving supported claims and the author's intended voice.
 
-All ten skills are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata.
+All twelve skill entrypoints are under 500 words, have concise trigger descriptions, and include tracked `agents/openai.yaml` metadata. The TypeScript skill loads its example reference only when needed.
 
-Historical behavior campaigns informed which skills were retained, but they exercised earlier prompt revisions and are not current-source validation. Ten skill prompts were rewritten on July 23, 2026; all ten remain pending complete representative re-evaluation, although `receiving-code-review` and `ponytail-review` now have directional exact-current-source paired probes.
+Historical behavior campaigns informed the original retained surface, but they exercised earlier prompt revisions and are not current-source validation. The ten prompts rewritten on July 23, 2026 remain pending complete representative re-evaluation, although `receiving-code-review` and `ponytail-review` now have directional exact-current-source paired probes. The two new skills have only the current-source probes recorded in [the evaluation notes](docs/testing.md).
 
 On July 26, one paired skill/control run for each of `caveman`, `ponytail`, `full-code-review`, and `test-driven-development` used Codex CLI with GPT-5.6 Sol at `max` on isolated Sequelize fixtures. The Caveman result led to its removal, the unchanged `ponytail` prompt remains an exact-current-source spot check, and the review and TDD results motivated targeted prompt updates afterward.
 

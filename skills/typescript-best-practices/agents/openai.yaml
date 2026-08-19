@@ -1,0 +1,4 @@
+interface:
+  display_name: "TypeScript Best Practices"
+  short_description: "Strengthen TypeScript types at real invariants"
+  default_prompt: "Use $typescript-best-practices to make this TypeScript change type-safe, scoped, and validated against the repository's actual contracts."

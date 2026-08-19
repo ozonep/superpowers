@@ -1,7 +1,7 @@
 {
   "name": "superpowers",
   "version": "7.0.0+codex.20260727050651",
-  "description": "Measured Codex workflows for strict TDD, code review, safe delegation, domain modeling, design interviews, simplicity, and precision code retrieval.",
+  "description": "Measured Codex workflows for strict TDD, review, delegation, domain modeling, TypeScript type safety, prose revision, simplicity, and precise code retrieval.",
   "author": {
     "name": "Jesse Vincent",
     "email": "jesse@fsck.com",
@@ -21,6 +21,10 @@
     "tdd",
     "parallel-agents",
     "domain-modeling",
+    "typescript",
+    "type-safety",
+    "writing",
+    "editing",
     "bounded-contexts",
     "design-interview",
     "grilling",
@@ -33,8 +37,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Superpowers for Codex",
-    "shortDescription": "Measured TDD, reviews, modeling, and precise code retrieval",
-    "longDescription": "Ten Codex-native skills for strict test-first implementation, comprehensive and simplification-only code review, repository-wide simplification audits, review-feedback handling, bounded parallel delegation, domain modeling, design interviews, minimal implementation, and jCodeMunch-based code retrieval.",
+    "shortDescription": "Measured TDD, reviews, TypeScript, modeling, and prose revision",
+    "longDescription": "Twelve Codex-native skills for strict test-first implementation, focused code review, review-feedback handling, bounded delegation, domain modeling, design interviews, minimal implementation, TypeScript type safety, faithful prose revision, and precise code retrieval.",
     "developerName": "Jesse Vincent",
     "category": "Developer Tools",
     "capabilities": [

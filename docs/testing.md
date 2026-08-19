@@ -5,7 +5,7 @@
 `tests/codex/run-tests.sh` verifies:
 
 - no foreign runtime entry points remain and `AGENTS.md` is a readable regular file;
-- exactly the ten retained skills are packaged;
+- exactly the twelve retained skills are packaged;
 - skill frontmatter, trigger descriptions, word budgets, model-agnostic prompting, and OpenAI metadata are valid;
 - skill text requests observable evidence rather than private reasoning traces;
 - marketplace and manifest metadata agree, including the three-prompt runtime limit;
@@ -13,6 +13,17 @@
 - zip and tar archives are deterministic and contain the same Codex runtime files.
 
 These checks validate structure and packaging, not stochastic workflow behavior.
+
+## New-skill current-source probes — August 19, 2026
+
+Two isolated read-only tasks used Codex CLI `0.148.0-alpha.15` with `gpt-5.6-sol`, user configuration disabled, and a temporary repository-local copy of only the skill under test. Both natural-language requests selected the intended skill implicitly. These are one-run directional checks without no-skill controls, not representative campaigns.
+
+| Skill | Effort and scenario | Observed result | Limits |
+|---|---|---|---|
+| `unslop` | `xhigh`; rewrite a deliberately promotional project update containing exact latency measurements, participation counts, a quotation, a rollout condition, and a negative caveat | Removed the generic heading, preamble, unsupported promotional paragraph, and canned contrast. Preserved every number, the quotation verbatim, the security-review condition, and the checkout-latency caveat; added no claim or opinion. | One short English project update with obvious tells; no review-only case, format variation, domain-sensitive language, control, or detector claim. The run made one harmless failed root-path read before using the discovered skill path. |
+| `typescript-best-practices` | `max`; read-only review of one strict TypeScript webhook boundary against a six-line protocol contract | Reported all three planted failures with exact source and contract evidence: unchecked JSON assertion, a valid empty array escaping through a declared `string` return, and unsound forward-variant handling. Runtime probes reproduced each failure; the review proposed scoped remedies, stayed read-only, and disclosed missing compiler, tests, callers, and error-policy evidence. | One synthetic file with no installed `tsc`, callers, or tests; no implementation, reference-loading, no-skill control, or repeated run. |
+
+The exact tested SKILL.md SHA-256 values were `3c6b736b620860771bd267c8239f3cc5cf5270bcbf48db281f28a6daef185ab2` for `unslop` and `51cec0ffff53d966583a16d503bf25397a3dc3c83d69e2b0a441f3daefcf5e2d` for `typescript-best-practices`. The TypeScript run did not load the patterns reference; a post-probe wording clarification changed that reference to the current untested SHA-256 `0be6a2d4baa609a4760288e5a3fd9a4c2c615fe585ee00f5646964b00b595c1e`. The probes support trigger routing and these two task shapes only. Both skills remain pending matched, repeated representative evaluation.
 
 ## Current-source status — July 27, 2026
 
