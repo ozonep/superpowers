@@ -1,4 +1,0 @@
-interface:
-  display_name: "Ponytail"
-  short_description: "Implement the smallest correct coding change"
-  default_prompt: "Use $ponytail to implement this request as the smallest correct, validated change."

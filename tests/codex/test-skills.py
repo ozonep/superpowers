@@ -386,9 +386,7 @@ _run_in_file_fixtures()
 root = Path(__file__).resolve().parents[2]
 skills_root = root / "skills"
 expected = {
-    "dispatching-parallel-agents",
     "domain-modeling",
-    "full-code-review",
     "grilling",
     "jcodemunch",
     "ponytail",
@@ -483,19 +481,6 @@ for required_term in (
     "register_edit",
 ):
     assert required_term in jcodemunch_text, f"jcodemunch skill omits {required_term}"
-
-full_review_text = (skills_root / "full-code-review/SKILL.md").read_text(
-    encoding="utf-8"
-)
-for required_term in (
-    "Direct and indirect callers or consumers",
-    "Contracts and conversions at each boundary",
-    "Tests for that path",
-    "Do not claim delegation unless the call succeeds",
-):
-    assert required_term in full_review_text, (
-        f"full-code-review skill omits {required_term}"
-    )
 
 tdd_text = (skills_root / "test-driven-development/SKILL.md").read_text(
     encoding="utf-8"

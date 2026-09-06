@@ -14,6 +14,44 @@
 
 These checks validate structure and packaging, not stochastic workflow behavior.
 
+## TDD Astra guide alignment — September 6, 2026
+
+`test-driven-development` was revised against the official [GPT-6 Astra guide](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-6-astra), specifically initiative, instruction priority, and proportionate verification. The contract preserves authentic RED/GREEN and pre/post characterization evidence, explicitly respects user verification overrides, permits direct verification for low-impact edits whose tests would merely mirror implementation, and stops after appropriate and required checks pass. The UI starter names all three verification routes. Model and effort remain outside reusable prompts.
+
+Four isolated tasks explicitly invoked the exact final `SKILL.md` using Codex CLI `0.153.4`, `gpt-6-astra`, and `model_reasoning_effort="medium"`. Each temporary Git workspace contained only its synthetic fixture and the skill copy. User configuration, project instruction loading, other skills, plugins, apps, memories, web search, and subagents were disabled. A fifth task used the final `default_prompt` verbatim before the static-edit request. All five completed successfully; ordered command/edit events, final diffs, and handoffs were inspected.
+
+| Scenario | Observed final-source behavior | Evidence limits |
+|---|---|---|
+| Inclusive expiry bug, with a quoted teammate asking to skip test-first work | Added the equality test; `python3 -m unittest test_expiry.ExpiryTests.test_at_deadline -v` failed with `False is not true` before production changed, then passed after `>` became `>=`. Required `python3 -m unittest discover -v` passed 3 tests once; final handoff included commands and results. | One comparison bug in a standard-library Python fixture; no complex integrations or rollback pressure. |
+| Direct user instruction to omit automated tests, overriding the fixture README | Made the one-line expiry fix, inspected its final diff, left tests untouched, ran no tests, and disclosed the waiver without asking again or claiming TDD. | Explicit initial-turn waiver only; no mid-turn steering. |
+| Behavior-preserving name-formatting refactor | Ran existing characterization coverage before and after the edit with `python3 -m unittest discover -v`; one test covered four input combinations. Changed only `names.py` and reported both passes. | Initially tried unavailable `python`, then recovered with `python3` before editing. String inputs only; no new coverage was needed. |
+| Static CSS color correction without its proprietary renderer or test infrastructure | Changed only the approved color, inspected the final diff, ran `git diff --check`, and disclosed unavailable rendering validation. No assertion script, forced RED/GREEN cycle, installation, or permission pause. | Source verification cannot establish rendered behavior. |
+| Same static correction using the final UI starter | Again made only the color edit and used direct diff verification; the final answer named the checks and rendering limitation. | One starter invocation on the same small task shape. |
+
+Final `SKILL.md` SHA-256: `187b50f29f45e4ec1c73b2ef0d9eaa90fe4415a660cfd229c8f78b63ff35e4fc` (484 words including frontmatter). Final `agents/openai.yaml` SHA-256: `3d2d3902e96d7fab377a34dbdfd1908349c78b83c6e5fddecf4ed92772c16f58`. The first three body probes copied the prior starter metadata (`4772cfc21f757bd853a4185ee730df8523ac4030f8bf83d51c6f56b04e3c9e8f`) but did not invoke it; the separate starter probe validates the final starter on the static scenario.
+
+A preliminary four-task run exercised draft skill hash `fc00991ae0b857b58355694dae95fd296365596d6ecad7316e8643eb6fd6c23e`. Its static task unnecessarily compared the exact CSS text in a before/after assertion script, although it honestly labeled this fallback verification. Moving the proportionality decision ahead of the cycle produced the final source tested above. The preliminary run is not final-source evidence. These are unblinded, one-run synthetic spot checks without no-skill controls, repeated trials, or cost comparisons. Representative evaluation remains pending; earlier TDD campaigns still apply only to their original prompt revisions.
+
+The unchanged repository per-skill validators and TDD handoff checks pass for the revised skill. `tests/codex/run-tests.sh` fails both before and after this change because the existing inventory assertion expects removed `ponytail`, `ponytail-audit`, and `ponytail-review` directories. Separately, marketplace validation passes and package generation includes the current TDD files; archive tests have seven existing failures for removed skills and the stale twelve-skill count. The generic skill-creator validator could not start because PyYAML is unavailable; the repository's strict YAML validator was used for the focused checks instead. These unrelated inventory assertions were left unchanged.
+
+## Ponytail Astra Extra High comparison — September 5, 2026
+
+The exact current `ponytail`, `ponytail-audit`, and `ponytail-review` prompts received 18 isolated tasks on Sequelize commit `0bf55694492d1f44755f93a06bf494ec6952c426`, using Codex CLI `0.153.4`, `gpt-6-astra`, and `xhigh`: two primary pairs and one boundary pair per skill. No skill text was changed.
+
+All four implementation runs produced the same small runtime fix and passed 15/15 independent source checks. Both audit arms found all four planted simplification opportunities, preserved async timing, and honestly reported sampled coverage; extra verified dependency findings varied. Both review arms found all four opportunities and rejected stale generated smoke results as validation. All boundary cases preserved necessary code and produced no unnecessary simplification findings.
+
+The skills did not establish a core correctness advantage. They mainly standardized preferences and reports. In primary pairs, skill input increased approximately 2%, 36%, and 67% respectively; output was approximately unchanged, +5%, and −6%. Timing showed no consistent win. The small, unblinded, partly seeded comparison is directional evidence on explicit activation, not a representative guarantee. Repository dependencies, database suites, types and the platform matrix were unavailable; source probes used disclosed stubs. A post-freeze oracle correction concerning async scheduling is documented explicitly.
+
+See the [complete report, exact prompts, source hashes, answers, implementation patches, metrics, oracle correction, and reproduction harness](evaluations/ponytail-astra-20260905/README.md). All model/effort records, terminal states, skill loads, and expected file changes were checked.
+
+## Astra Extra High comparison — September 5, 2026
+
+The exact current `dispatching-parallel-agents`, `domain-modeling`, and `full-code-review` prompts received 18 scored runs on Sequelize commit `0bf55694492d1f44755f93a06bf494ec6952c426`: two fresh primary-task pairs and one boundary pair per skill, using Codex CLI `0.153.4`, `gpt-6-astra`, and `xhigh` for parents and workers. No skill text was changed. Two additional no-skill review runs isolate explicit parallel authorization from the full review skill.
+
+Core correctness was tied in the planned pairs. Dispatch added overhead despite both arms delegating successfully; domain modeling made cardinalities and fact ownership more explicit; full review found the same four planted regressions faster with three workers but consumed more tokens. Both review arms passed a clean-patch control. The added no-skill controls also found all four regressions with workers and comparable elapsed times; parallel review did not require the skill. These are directional results on one real technical domain, not a representative quality guarantee or a universal removal decision.
+
+See the [complete report, exact source hashes, protocol, answers, metrics, source probes, and reproduction harness](evaluations/astra-20260905/README.md). Model/effort, actual skill loads, worker completion, and unchanged product diffs were checked. Dependency-stubbed source probes were executed; Sequelize's installed-dependency and database suites were unavailable. Historical results below retain their original source/version limitations.
+
 ## New-skill current-source probes — August 19, 2026
 
 Two isolated read-only tasks used Codex CLI `0.148.0-alpha.15` with `gpt-5.6-sol`, user configuration disabled, and a temporary repository-local copy of only the skill under test. Both natural-language requests selected the intended skill implicitly. These are one-run directional checks without no-skill controls, not representative campaigns.

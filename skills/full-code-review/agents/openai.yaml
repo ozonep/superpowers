@@ -1,4 +1,0 @@
-interface:
-  display_name: "Full Code Review"
-  short_description: "Trace changes through callers, contracts, and tests"
-  default_prompt: "Use $full-code-review to review the requested change read-only, tracing each changed behavior through callers, contracts, and tests before reporting only verified, prioritized findings."

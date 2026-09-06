@@ -1,4 +1,0 @@
-interface:
-  display_name: "Ponytail Audit"
-  short_description: "Audit repositories for verified simplifications"
-  default_prompt: "Use $ponytail-audit to find verified behavior-preserving simplifications across this repository without editing it."

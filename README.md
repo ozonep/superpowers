@@ -8,10 +8,8 @@ The fork keeps behavior-shaping instructions that changed representative GPT-5.6
 
 - **test-driven-development** — preserves strict test-first behavior under deadline, authority, and sunk-cost pressure, with RED/GREEN evidence in the final handoff.
 - **jcodemunch** — routes code exploration through version-current, symbol-level jCodeMunch retrieval while preserving freshness and edit lifecycle checks.
-- **full-code-review** — traces changed behavior through callers, contracts, and tests before returning a verified, prioritized read-only review.
 - **ponytail-review** — performs a read-only review limited to verified behavior-preserving simplifications.
 - **ponytail-audit** — audits the whole current repository for verified behavior-preserving simplifications without applying them.
-- **dispatching-parallel-agents** — explicitly authorizes bounded parallel delegation for independent work and protects Codex's shared workspace from overlapping writes.
 - **domain-modeling** — clarifies overloaded language, invariants, and ownership while keeping unresolved architecture choices open.
 - **grilling** — stress-tests a plan interactively with one evidence-backed decision question per turn.
 - **ponytail** — applies a simplicity-first decision ladder to coding work without trading away correctness or explicit requirements.
@@ -48,7 +46,7 @@ Earlier five-run campaigns were used to choose the plugin's surface. They remain
 
 In those historical controls, Codex succeeded 5/5 without extra instructions for design triage, root-cause debugging, implementation planning and execution, fresh completion validation, code review, feedback handling, managed worktrees, and branch-finish boundaries.
 
-Strict TDD did not hold without guidance: only 2/5 historical controls restarted from a failing test; 3/5 kept code written first and added tests afterward. An earlier candidate passed 5/5 after one eval-discovered waiver loophole was closed. In the July 26 Sequelize pair, the skill again produced authentic RED/GREEN while the control did not, but its final response omitted the decisive commands and results. The current contract now requires that evidence in the handoff and is pending fresh evaluation.
+Strict TDD did not hold without guidance: only 2/5 historical controls restarted from a failing test; 3/5 kept code written first and added tests afterward. An earlier candidate passed 5/5 after one eval-discovered waiver loophole was closed. In the July 26 Sequelize pair, the skill again produced authentic RED/GREEN while the control did not, but its final response omitted the decisive commands and results. The current contract retains that handoff evidence and incorporates Astra guidance on user authority and proportionate verification. Five isolated Astra `medium` spot checks cover the final skill and starter; [representative evaluation remains pending](docs/testing.md).
 
 Implicit delegation also needed a skill: 5/5 controls correctly refused to spawn subagents when neither the user nor an applicable skill requested delegation. An earlier parallel-dispatch candidate passed 5/5 and established the need for narrow authorization.
 
